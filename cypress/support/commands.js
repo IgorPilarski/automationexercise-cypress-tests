@@ -20,6 +20,12 @@
 // -- This is a dual command --
 // Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
 //
-//
+//  
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (email, password) => {
+        cy.get('input[name="email"]').type(email || users.validUser.email);
+        cy.get('input[name="password"]').type(password  || users.validUser.password);
+        cy.get('button[type="submit"]').click();
+})
