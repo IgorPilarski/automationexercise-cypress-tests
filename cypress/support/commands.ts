@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import cypress from "cypress";
 import users from "../fixtures/users.json";
 import { generateTestEmail } from './utils';
 
@@ -60,4 +61,13 @@ Cypress.Commands.add("registerRandomUser", () => {
   cy.get('i.fa.fa-trash-o').click()
   cy.get('h2').contains("Account Deleted!").should('be.visible');
   cy.get('a[data-qa="continue-button"]').click()
+})
+
+Cypress.Commands.add("tryToRegisterExistingUser", (name: string, email: string) =>{
+  cy.get('h2').contains("New User Signup!").should('be.visible');
+  cy.get('input[data-qa="signup-name"').type(name);
+  cy.get('input[data-qa="signup-email"]').type(email);
+  cy.get('button[type="submit"]').contains('Signup').click(); 
+  cy.get('p[style="color: red;"]').should('contain','Email Address already exist!');
+
 })
