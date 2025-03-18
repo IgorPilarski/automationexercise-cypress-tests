@@ -1,4 +1,4 @@
-describe('Contact Us Form tests', () => {
+describe('Contact Us Form test', () => {
   it(`Given the contact us form page
       When the user fills out and submits the form 
       Then the form should be successfully submitted  
@@ -6,7 +6,8 @@ describe('Contact Us Form tests', () => {
     cy.visit("");
     cy.verifyHomePageLoaded()
     cy.goTo("contactPage");
+    cy.completeAndConfirmFormSubmission()
+    cy.verifyHomePageLoaded()
 
 })
-
 })
