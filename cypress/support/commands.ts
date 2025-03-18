@@ -33,12 +33,10 @@ Cypress.Commands.add('goTo', (pageName: string) => {
 
   if (pages[pageName]) {
       pages[pageName](); 
-  }
+  }else {
+    throw new Error(`Page "${pageName}" is not defined in the command .goto()`);
+}
 });
-
-// Cypress.Commands.add("goToLoginPage", () => {
-//   cy.get('li').contains('Login').click()
-//})
 
 Cypress.Commands.add("login", (email?: string, password?: string, name?: string) => {
   cy.get('h2').contains("Login to your account").should('be.visible');
