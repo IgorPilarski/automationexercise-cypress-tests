@@ -10,7 +10,7 @@ describe('Simple register tests', () => {
     cy.registerRandomUser();
 
 })
-  it.only(`Given the already registered user 
+  it(`Given the already registered user 
       When trying to register with its credentials
       Then they should not be registered`, () => {
       cy.visit("");
