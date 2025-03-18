@@ -38,6 +38,14 @@ Cypress.Commands.add('goTo', (pageName: string) => {
 }
 });
 
+Cypress.Commands.add('verifyPageLoaded', () => {
+  cy.get('.logo img').should('be.visible');
+  cy.title().should('eq', 'Automation Exercise');
+  cy.get('#slider').should('be.visible')
+  cy.get('.nav a[href="/"]').should('be.visible')
+  cy.url().should('eq', 'https://automationexercise.com/')
+})
+
 Cypress.Commands.add("login", (email?: string, password?: string, name?: string) => {
   cy.get('h2').contains("Login to your account").should('be.visible');
   cy.get('input[data-qa="login-email"]').type(email || users.simpleLoginUser.email);

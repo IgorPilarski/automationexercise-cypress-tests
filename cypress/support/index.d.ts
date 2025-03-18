@@ -3,9 +3,9 @@
 declare namespace Cypress {
   interface Chainable {
     goTo(page: string): Chainable<void>;
+    verifyPageLoaded(): Chainable<void>;
     login(email?: string, password?: string, name?: string): Chainable<void>;
     logout(): Chainable<void>;
-    goToLoginPage(): Chainable<void>;
     tryLoginWithInvalidUser(email: string, password: string): Chainable<void>;
     registerRandomUser()
     tryToRegisterExistingUser(name: string, email: string): Chainable<void>;
