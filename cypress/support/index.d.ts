@@ -6,5 +6,6 @@ declare namespace Cypress {
     logout(): Chainable<void>;
     goToLoginPage(): Chainable<void>;
     tryLoginWithInvalidUser(email: string, password: string): Chainable<void>;
+    registerRandomUser()
   }
 }
