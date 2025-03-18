@@ -1,8 +1,44 @@
 /// <reference types="cypress" />
 
-import cypress from "cypress";
 import users from "../fixtures/users.json";
 import { generateTestEmail } from './utils';
+
+Cypress.Commands.add('goTo', (pageName: string) => {
+  const pages: { [key: string]: () => void } = {
+      homePage: () => {
+        cy.get('li').contains('Home').click()
+      },
+      productsPage: () => {
+        cy.get('li').contains('Products').click()
+      },
+      cartPage: () => {
+        cy.get('li').contains('Cart').click()
+      },
+      loginPage: () => {
+        cy.get('li').contains('Login').click()
+      },
+      testCasesPage: () => {
+        cy.get('li').contains('Test Cases').click()
+      },
+      apiTestingPage: () => {
+        cy.get('li').contains('API Testing').click()
+      },
+      tutorialsRedirect: () => {
+        cy.get('li').contains('Video Tutorials').click()
+      },
+      contactPage: () => {
+        cy.get('li').contains('Contact us').click()
+      }
+  };
+
+  if (pages[pageName]) {
+      pages[pageName](); 
+  }
+});
+
+// Cypress.Commands.add("goToLoginPage", () => {
+//   cy.get('li').contains('Login').click()
+//})
 
 Cypress.Commands.add("login", (email?: string, password?: string, name?: string) => {
   cy.get('h2').contains("Login to your account").should('be.visible');
@@ -15,10 +51,6 @@ Cypress.Commands.add("login", (email?: string, password?: string, name?: string)
 Cypress.Commands.add("logout", () => {
   cy.get('li').contains('li', 'Logout').click()
   cy.get('li').contains('Login').should('exist')
-})
-
-Cypress.Commands.add("goToLoginPage", () => {
-  cy.get('li').contains('Login').click()
 })
 
 Cypress.Commands.add("tryLoginWithInvalidUser", (email: string, password: string) => {
@@ -69,5 +101,4 @@ Cypress.Commands.add("tryToRegisterExistingUser", (name: string, email: string) 
   cy.get('input[data-qa="signup-email"]').type(email);
   cy.get('button[type="submit"]').contains('Signup').click(); 
   cy.get('p[style="color: red;"]').should('contain','Email Address already exist!');
-
 })
