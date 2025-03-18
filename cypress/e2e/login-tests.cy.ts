@@ -1,4 +1,4 @@
-import users from "../fixtures/users.json";
+import users from "../fixtures/usersData.json";
 
 describe('Simple login tests', () => {
   it(`Given a registered user;

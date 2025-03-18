@@ -1,4 +1,4 @@
-import users from "../fixtures/users.json";
+import users from "../fixtures/usersData.json";
 
 describe('Simple register tests', () => {
   it(`Given the user attempts to register
