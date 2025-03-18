@@ -4,7 +4,7 @@ describe('Contact Us Form tests', () => {
       Then the form should be successfully submitted  
       AND clicking the Home button, the user should be redirected to the homepage  `, () => {
     cy.visit("");
-    cy.verifyPageLoaded()
+    cy.verifyHomePageLoaded()
     cy.goTo("contactPage");
 
 })

@@ -38,7 +38,7 @@ Cypress.Commands.add('goTo', (pageName: string) => {
 }
 });
 
-Cypress.Commands.add('verifyPageLoaded', () => {
+Cypress.Commands.add('verifyHomePageLoaded', () => {
   cy.get('.logo img').should('be.visible');
   cy.title().should('eq', 'Automation Exercise');
   cy.get('#slider').should('be.visible')

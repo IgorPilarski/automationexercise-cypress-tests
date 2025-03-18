@@ -3,7 +3,7 @@
 declare namespace Cypress {
   interface Chainable {
     goTo(page: string): Chainable<void>;
-    verifyPageLoaded(): Chainable<void>;
+    verifyHomePageLoaded(): Chainable<void>;
     login(email?: string, password?: string, name?: string): Chainable<void>;
     logout(): Chainable<void>;
     tryLoginWithInvalidUser(email: string, password: string): Chainable<void>;

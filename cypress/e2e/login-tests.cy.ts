@@ -6,7 +6,7 @@ describe('Simple login tests', () => {
       Then they should be logged in successfully
       AND they should be able to logout`, () => {
     cy.visit("");
-    cy.verifyPageLoaded();
+    cy.verifyHomePageLoaded();
     cy.goTo("loginPage");
     cy.login();
     cy.logout();
@@ -15,7 +15,7 @@ describe('Simple login tests', () => {
       When they enter invalid credentials
       Then they should not be logged in`, () => {
       cy.visit("");
-      cy.verifyPageLoaded();
+      cy.verifyHomePageLoaded();
       cy.goTo("loginPage");
       cy.tryLoginWithInvalidUser(users.notExistingUser.email, users.notExistingUser.password);
     })
