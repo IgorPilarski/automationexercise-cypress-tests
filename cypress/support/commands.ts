@@ -4,7 +4,6 @@ import users from "../fixtures/usersData.json";
 import contactDormData from "../fixtures/contactFormData.json";
 
 import { generateTestEmail } from './utils';
-import cypress from "cypress";
 
 Cypress.Commands.add('goTo', (pageName: string) => {
   const pages: { [key: string]: () => void } = {
@@ -39,6 +38,10 @@ Cypress.Commands.add('goTo', (pageName: string) => {
   }else {
     throw new Error(`Page "${pageName}" is not defined in the command .goto()`);
 }
+});
+
+Cypress.Commands.add('hoverOver', (selector: string) => {
+  cy.get(selector).trigger('mouseover');
 });
 
 Cypress.Commands.add('verifyHomePageLoaded', () => {
@@ -164,4 +167,17 @@ Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
   cy.get('input#susbscribe_email').type(email || users.simpleLoginUser.email)
   cy.get('i.fa.fa-arrow-circle-o-right').click()
   cy.get('div.col-md-9.form-group').not('.hide').should('be.visible').should('contain','You have been successfully subscribed!');
+})
+
+Cypress.Commands.add("addFirstProductsToCart", (amount: number) => {
+  for (let i = 1; i <= amount; i++) {
+    cy.get(`a[data-product-id="${i}"]`).eq(0).trigger('mouseover').click();
+    cy.get('button.btn.btn-success.close-modal.btn-block').click()
+    cy.log(`added product number: ${i}`);
+  }
+}) 
+
+
+Cypress.Commands.add("verifyCartContents", () => {
+  
 })

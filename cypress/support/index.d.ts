@@ -16,5 +16,8 @@ declare namespace Cypress {
     visitAndVerifyProductPage(index: number): Chainable<void>;
     searchAndVerifyProduct(productName: sting, amountOfProducts: number): Chainable<void>;
     subscribeAndVerify(email?: string): Chainable<void>;
+    addFirstProductsToCart(amount: number): Chainable<void>;
+    verifyCartContents(): Chainable<void>;
+    hoverOver(selector: string): Chainable<void>;
   }
 }
