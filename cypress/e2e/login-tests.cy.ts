@@ -1,10 +1,10 @@
 import users from "../fixtures/usersData.json";
 
 describe('Simple login tests', () => {
-  it(`Given a registered user;
-      When they enter valid credentials
-      Then they should be logged in successfully
-      AND they should be able to logout`, () => {
+  it(`Given: a registered user;
+      When: they enter valid credentials
+      Then: they should be logged in successfully
+      And: they should be able to logout`, () => {
     cy.visit("");
     cy.verifyHomePageLoaded();
     cy.goTo("loginPage");

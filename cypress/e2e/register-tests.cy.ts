@@ -1,10 +1,10 @@
 import users from "../fixtures/usersData.json";
 
 describe('Simple register tests', () => {
-  it(`Given the user attempts to register
-      When trying to register
-      Then the user should be successfully registered  
-      AND the new user should be able delete his account`, () => {
+  it(`Given: the user that attempts to register
+      When: trying to register
+      Then: the user should be successfully registered  
+      AND: the new user should be able delete his account`, () => {
     cy.visit("");
     cy.verifyHomePageLoaded();
     cy.goTo("loginPage");
