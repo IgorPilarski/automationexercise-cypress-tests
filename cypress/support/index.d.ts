@@ -10,6 +10,9 @@ declare namespace Cypress {
     registerRandomUser()
     tryToRegisterExistingUser(name: string, email: string): Chainable<void>;
     completeAndConfirmFormSubmission(name?: string, email?: string, subject?: string, message?: string): Chainable<void>;
-    verifyTestCaesPageLoaded(): Chainable<void>;
+    verifyTestCasesPageLoaded(): Chainable<void>;
+    verifyProductsPageLoaded(): Chainable<void>;
+    verifyProductsPageLoaded(): Chainable<void>;
+    visitAndVerifyProductPage(index: number): Chainable<void>;
   }
 }

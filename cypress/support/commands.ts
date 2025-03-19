@@ -4,6 +4,7 @@ import users from "../fixtures/usersData.json";
 import contactDormData from "../fixtures/contactFormData.json";
 
 import { generateTestEmail } from './utils';
+import cypress from "cypress";
 
 Cypress.Commands.add('goTo', (pageName: string) => {
   const pages: { [key: string]: () => void } = {
@@ -48,8 +49,31 @@ Cypress.Commands.add('verifyHomePageLoaded', () => {
   cy.url().should('eq', 'https://automationexercise.com/')
 })
 
-Cypress.Commands.add('verifyTestCaesPageLoaded', () => {
+Cypress.Commands.add('verifyTestCasesPageLoaded', () => {
+  cy.url().should('eq', 'https://automationexercise.com/test_cases')
   cy.get('h2.title.text-center').should("contain","Test Cases");
+  cy.get('section#form').should('be.visible')
+})
+
+Cypress.Commands.add('verifyProductsPageLoaded', () => {
+  cy.url().should('eq', 'https://automationexercise.com/products')
+  cy.get('h2').contains("Category").should('be.visible');
+  cy.get('h2.title.text-center').should("contain", "All Products")
+  cy.get('h2').contains("Brands").should('be.visible');
+  cy.get('input#search_product').should('be.visible');
+  cy.get('img#sale_image, .sale img').should('be.visible');
+  cy.get('div.features_items').should('be.visible');
+})
+
+Cypress.Commands.add("visitAndVerifyProductPage", (index: number) => {
+  cy.get(`a[href*="/product_details/"]`).eq(index).click()
+  cy.url().should('eq', `https://automationexercise.com/product_details/${index + 1}`);
+  cy.get('.product-information h2').should('be.visible'); 
+  cy.get('p').contains("Category").should('be.visible'); 
+  cy.get('span').contains("Rs.").should('be.visible'); 
+  cy.get('p').contains('Availability:').should('be.visible');
+  cy.get('p').contains('Condition:').should('be.visible');
+  cy.get('p').contains('Brand:').should('be.visible');
 })
 
 Cypress.Commands.add("login", (email?: string, password?: string, name?: string) => {
