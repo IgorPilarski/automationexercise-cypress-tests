@@ -48,6 +48,10 @@ Cypress.Commands.add('verifyHomePageLoaded', () => {
   cy.url().should('eq', 'https://automationexercise.com/')
 })
 
+Cypress.Commands.add('verifyTestCaesPageLoaded', () => {
+  cy.get('h2.title.text-center').should("contain","Test Cases");
+})
+
 Cypress.Commands.add("login", (email?: string, password?: string, name?: string) => {
   cy.get('h2').contains("Login to your account").should('be.visible');
   cy.get('input[data-qa="login-email"]').type(email || users.simpleLoginUser.email);
