@@ -45,6 +45,7 @@ Cypress.Commands.add('verifyHomePageLoaded', () => {
   cy.get('.logo img').should('be.visible');
   cy.title().should('eq', 'Automation Exercise');
   cy.get('#slider').should('be.visible')
+  cy.get('div#slider-carousel').should('be.visible')
   cy.get('.nav a[href="/"]').should('be.visible')
   cy.url().should('eq', 'https://automationexercise.com/')
 })
@@ -156,4 +157,11 @@ Cypress.Commands.add("searchAndVerifyProduct", (productName: string, amountOfPro
   cy.get('i.fa.fa-search').click()
   cy.get('h2.title.text-center').should('contain', 'Searched Products')
   cy.get('.product-overlay').should('have.length', amountOfProducts)
+})
+Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
+  cy.scrollTo('bottom')
+  cy.get('h2').contains("Subscription").should('be.visible'); 
+  cy.get('input#susbscribe_email').type(email || users.simpleLoginUser.email)
+  cy.get('i.fa.fa-arrow-circle-o-right').click()
+  cy.get('div.col-md-9.form-group').not('.hide').should('be.visible').should('contain','You have been successfully subscribed!');
 })
