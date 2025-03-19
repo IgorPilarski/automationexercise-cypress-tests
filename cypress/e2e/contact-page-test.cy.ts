@@ -8,6 +8,5 @@ describe('Contact Us Form test', () => {
     cy.goTo("contactPage");
     cy.completeAndConfirmFormSubmission()
     cy.verifyHomePageLoaded()
-
 })
 })

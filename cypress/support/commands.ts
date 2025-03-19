@@ -151,3 +151,9 @@ Cypress.Commands.add("completeAndConfirmFormSubmission", (name?: string, email?:
   cy.get('div.status.alert.alert-success').contains("Success! Your details have been submitted successfully.").should('be.visible');
   cy.get('i.fa.fa-angle-double-left').click()
 });
+Cypress.Commands.add("searchAndVerifyProduct", (productName: string, amountOfProducts: number) => {
+  cy.get('input#search_product').type(productName)
+  cy.get('i.fa.fa-search').click()
+  cy.get('h2.title.text-center').should('contain', 'Searched Products')
+  cy.get('.product-overlay').should('have.length', amountOfProducts)
+})
