@@ -30,8 +30,19 @@ describe('Verify All Products and product detail page', () => {
     cy.goTo("productsPage");
     cy.verifyProductsPageLoaded();
     cy.addFirstProductsToCart(2);
+    cy.goToCartAfterAddingProduct();
     cy.verifyCartContents();
+    cy.verifyCartQuantity(2)
     })
 
+  it(`Given: user is on home page
+      When: user adds two products to the cart
+      And: navigates to the cart page
+      Then: both products should be in the cart with correct prices quantity, and total price`, () => {
+    cy.visit("");
+    cy.verifyHomePageLoaded() ;
+    cy.addProductToCartByIndex(3);
+    cy.verifyCartQuantity(2)
+    })
 })
 

@@ -172,12 +172,25 @@ Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
 Cypress.Commands.add("addFirstProductsToCart", (amount: number) => {
   for (let i = 1; i <= amount; i++) {
     cy.get(`a[data-product-id="${i}"]`).eq(0).trigger('mouseover').click();
-    cy.get('button.btn.btn-success.close-modal.btn-block').click()
+    if(i<amount){
+      cy.get('button.btn.btn-success.close-modal.btn-block').click()
+    }
     cy.log(`added product number: ${i}`);
   }
 }) 
 
+Cypress.Commands.add("goToCartAfterAddingProduct", () => {
+  cy.get('p.text-center').contains('View Cart').click()
+})
 
 Cypress.Commands.add("verifyCartContents", () => {
-  
 })
+
+Cypress.Commands.add("verifyCartQuantity", (amount: number) => {
+  cy.get("i.fa.fa-times").should('have.length', amount)
+})
+
+Cypress.Commands.add("addProductToCartByIndex", () => {
+})
+
+  
