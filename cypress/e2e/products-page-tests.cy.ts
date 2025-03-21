@@ -31,8 +31,8 @@ describe('Verify All Products and product detail page', () => {
     cy.verifyProductsPageLoaded();
     cy.addFirstProductsToCart(2);
     cy.goToCartAfterAddingProduct();
-    cy.verifyCartContents();
-    cy.verifyCartQuantity(2)
+    cy.verifyCartAmounts();
+    cy.verifyCartProductCount(2)
     })
 
   it(`Given: user is on home page
@@ -42,7 +42,7 @@ describe('Verify All Products and product detail page', () => {
     cy.visit("");
     cy.verifyHomePageLoaded() ;
     cy.addProductToCartByIndex(3);
-    cy.verifyCartQuantity(2)
+    cy.verifyCartProductCount(2)
     })
 })
 

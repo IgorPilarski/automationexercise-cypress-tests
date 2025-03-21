@@ -17,10 +17,11 @@ declare namespace Cypress {
     searchAndVerifyProduct(productName: sting, amountOfProducts: number): Chainable<void>;
     subscribeAndVerify(email?: string): Chainable<void>;
     addFirstProductsToCart(amount: number): Chainable<void>;
-    verifyCartContents(): Chainable<void>;
+    verifyCartAmounts(): Chainable<void>;
     hoverOver(selector: string): Chainable<void>;
-    addProductToCartByIndex(index: number): Chainable<void>;
-    verifyCartQuantity(amount: number): Chainable<void>;
     goToCartAfterAddingProduct(): Chainable<void>;
+    verifyCartProductCount(amount: number): Chainable<void>;
+    addProductToCartByIndex(index: number): Chainable<void>;
+    verifyProductQuantityInCart()
   }
 }

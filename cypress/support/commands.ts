@@ -183,14 +183,42 @@ Cypress.Commands.add("goToCartAfterAddingProduct", () => {
   cy.get('p.text-center').contains('View Cart').click()
 })
 
-Cypress.Commands.add("verifyCartContents", () => {
+Cypress.Commands.add("verifyCartAmounts", () => {
+  cy.get('tbody tr').then(($rows) => {
+    const rowCount = $rows.length;
+
+    for (let i = 0; i < rowCount; i++) {
+      cy.get('tbody tr').eq(i).then(($row) => {
+
+        cy.get('td.cart_price').eq(i)
+        .invoke('text')
+        .then((priceAmount) => {
+          const price = parseInt(priceAmount.replace(/[^\d]/g, ''), 10);
+          cy.get('td.cart_quantity').eq(i)
+            .invoke('text')
+            .then((quantityValue) => {
+              const quantity = parseInt(quantityValue.trim(), 10);
+              const expectedTotal = price * quantity;
+
+              cy.get('td.cart_total').eq(i)
+                .invoke('text')
+                .then((totalAmount) => {
+                  const actualTotal = parseInt(totalAmount.replace(/[^\d]/g, ''), 10);
+                  expect(actualTotal).to.eq(expectedTotal);
+                });
+            });
+        });
+      });
+    }
+  });
 })
 
-Cypress.Commands.add("verifyCartQuantity", (amount: number) => {
+Cypress.Commands.add("verifyCartProductCount", (amount: number) => {
   cy.get("i.fa.fa-times").should('have.length', amount)
 })
+Cypress.Commands.add("verifyProductQuantityInCart", () => {
 
+})
 Cypress.Commands.add("addProductToCartByIndex", () => {
 })
 
-  
