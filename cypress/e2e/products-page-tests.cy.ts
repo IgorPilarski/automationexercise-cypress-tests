@@ -6,8 +6,8 @@ describe('Verify All Products and product detail page', () => {
     cy.visit("");
     cy.verifyHomePageLoaded()
     cy.goTo("productsPage");
-    cy.verifyProductsPageLoaded();
-    cy.visitAndVerifyProductPage(2);
+    cy.visitAndVerifyAllProductsPageLoaded();
+    cy.visitAndVerifyProductDetailsPageLoaded(2);
     })
 
   it(`Given: user is on home page
@@ -17,7 +17,7 @@ describe('Verify All Products and product detail page', () => {
     cy.visit("");
     cy.verifyHomePageLoaded() ;
     cy.goTo("productsPage");
-    cy.verifyProductsPageLoaded();
+    cy.visitAndVerifyAllProductsPageLoaded();
     cy.searchAndVerifyProduct("Women", 2)
     })
 
@@ -28,7 +28,7 @@ describe('Verify All Products and product detail page', () => {
     cy.visit("");
     cy.verifyHomePageLoaded() ;
     cy.goTo("productsPage");
-    cy.verifyProductsPageLoaded();
+    cy.visitAndVerifyAllProductsPageLoaded();
     cy.addFirstProductsToCart(2);
     cy.goToCartAfterAddingProduct();
     cy.verifyCartProductCount(2)
@@ -43,7 +43,7 @@ describe('Verify All Products and product detail page', () => {
       Then: the product should be in the cart with the specified quantity`, () => {
     cy.visit("");
     cy.verifyHomePageLoaded() ;
-    cy.visitAndVerifyProductPage(5)
+    cy.visitAndVerifyProductDetailsPageLoaded(5)
     cy.increaseProductQuantity(4);
     cy.addCurrentProductToCart()
     cy.goToCartAfterAddingProduct()

@@ -5,6 +5,6 @@ describe('Verify Test Cases Page', () => {
     cy.visit("");
     cy.verifyHomePageLoaded();
     cy.goTo("testCasesPage");
-    cy.verifyTestCasesPageLoaded();
+    cy.visitAndVerifyTestCasesPageLoaded();
 })
 })

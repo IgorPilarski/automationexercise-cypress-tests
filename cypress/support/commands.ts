@@ -53,13 +53,13 @@ Cypress.Commands.add('verifyHomePageLoaded', () => {
   cy.url().should('eq', 'https://automationexercise.com/')
 })
 
-Cypress.Commands.add('verifyTestCasesPageLoaded', () => {
+Cypress.Commands.add('visitAndVerifyTestCasesPageLoaded', () => {
   cy.url().should('eq', 'https://automationexercise.com/test_cases')
   cy.get('h2.title.text-center').should("contain","Test Cases");
   cy.get('section#form').should('be.visible')
 })
 
-Cypress.Commands.add('verifyProductsPageLoaded', () => {
+Cypress.Commands.add('visitAndVerifyAllProductsPageLoaded', () => {
   cy.url().should('eq', 'https://automationexercise.com/products')
   cy.get('h2').contains("Category").should('be.visible');
   cy.get('h2.title.text-center').should("contain", "All Products")
@@ -69,10 +69,20 @@ Cypress.Commands.add('verifyProductsPageLoaded', () => {
   cy.get('div.features_items').should('be.visible');
 })
 
-Cypress.Commands.add("visitAndVerifyProductPage", (index: number) => {
+Cypress.Commands.add("visitAndVerifyProductDetailsPageLoaded", (index: number) => {
   cy.get(`a[href*="/product_details/"]`).eq(index-1).click()
   cy.url().should('eq', `https://automationexercise.com/product_details/${index}`);
   cy.get('.product-information h2').should('be.visible'); 
+  cy.get('p').contains("Category").should('be.visible'); 
+  cy.get('span').contains("Rs.").should('be.visible'); 
+  cy.get('p').contains('Availability:').should('be.visible');
+  cy.get('p').contains('Condition:').should('be.visible');
+  cy.get('p').contains('Brand:').should('be.visible');
+})
+
+Cypress.Commands.add("visitAndVerifyCartPageLoaded", () => {
+  cy.url().should('eq', 'https://www.automationexercise.com/view_cart');
+  cy.get('li.active').should('contain', 'Shopping Cart'); 
   cy.get('p').contains("Category").should('be.visible'); 
   cy.get('span').contains("Rs.").should('be.visible'); 
   cy.get('p').contains('Availability:').should('be.visible');
