@@ -22,6 +22,8 @@ declare namespace Cypress {
     goToCartAfterAddingProduct(): Chainable<void>;
     verifyCartProductCount(amount: number): Chainable<void>;
     addProductToCartByIndex(index: number): Chainable<void>;
+    increaseProductQuantity(quantity: number): Chainable<void>;
+    addCurrentProductToCart(): Chainable<void>;
     verifyProductQuantityInCart()
   }
 }

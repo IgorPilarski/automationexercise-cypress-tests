@@ -35,7 +35,7 @@ describe('Verify All Products and product detail page', () => {
     cy.verifyCartAmounts();
     })
 
-    it.only(`Given: user is on home page
+    it(`Given: user is on home page
       When: user views a product
       And: sets its quantity to the specified amount
       And: adds it to the cart
@@ -43,8 +43,11 @@ describe('Verify All Products and product detail page', () => {
       Then: the product should be in the cart with the specified quantity`, () => {
     cy.visit("");
     cy.verifyHomePageLoaded() ;
-    cy.addProductToCartByIndex(1);
-    //cy.visitAndVerifyProductPage(5)
+    cy.visitAndVerifyProductPage(5)
+    cy.increaseProductQuantity(4);
+    cy.addCurrentProductToCart()
+    cy.goToCartAfterAddingProduct()
+    cy.verifyProductQuantityInCart()
     })
 })
 
