@@ -30,5 +30,6 @@ declare namespace Cypress {
     verifyProductQuantityInCart(): Chainable<void>;
     goToCheckout(): Chainable<void>;
     goToLoginFromCheckout()
+    verifyUserDetailsInCheckout(selecterUser: string): Chainable<void>;
   }
 }

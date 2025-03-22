@@ -15,5 +15,6 @@ describe('Place Order tests', () => {
       cy.registerRandomUser()
       cy.goTo('cartPage')
       cy.goToCheckout();
+      cy.verifyUserDetailsInCheckout("randomEmailUser")
       })
 })

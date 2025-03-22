@@ -7,5 +7,22 @@
   "notExistingUser": {
     "email": "no@email.com",
     "password": "nopassword"
+  },
+  "randomEmailUser": {
+    "firstName": "test-user",
+    "lastName":"O'lastname",
+    "password":"Test!123$@",
+    "day":"12",
+    "month":"December",
+    "year":"1900",
+    "company":"The biggest company in the world",
+    "address":"Wiejska 4, Warszawa",
+    "address2":"6/8/abcd",
+    "country":"New Zealand",
+    "state":"Województwo mazowieckie",
+    "city":"Warszawa",
+    "zipCode":"00-902",
+    "mobileNumber":"+48512321123"
   }
 }
+

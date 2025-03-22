@@ -115,27 +115,27 @@ Cypress.Commands.add("tryLoginWithInvalidUser", (email: string, password: string
 Cypress.Commands.add("registerRandomUser", () => {
   const email = generateTestEmail();
   cy.get('h2').contains("New User Signup!").should('be.visible');
-  cy.get('input[data-qa="signup-name"').type("test-user");
+  cy.get('input[data-qa="signup-name"').type(users.randomEmailUser.firstName);
   cy.get('input[data-qa="signup-email"]').type(email);
   cy.get('button[type="submit"]').contains('Signup').click();
   cy.get('h2.title.text-center').contains('b', 'Enter Account Information').should('be.visible');
   cy.get('input#id_gender1').click();
-  cy.get('input[type="password"]').type("Test!123$@");
-  cy.get('select[data-qa="days"]').select('12');
-  cy.get('select[data-qa="months"]').select('December');
-  cy.get('select[data-qa="years"]').select('1900');
+  cy.get('input[type="password"]').type(users.randomEmailUser.password);
+  cy.get('select[data-qa="days"]').select(users.randomEmailUser.day);
+  cy.get('select[data-qa="months"]').select(users.randomEmailUser.month);
+  cy.get('select[data-qa="years"]').select(users.randomEmailUser.year);
   cy.get('input[name="newsletter"]').click();
   cy.get('input[name="optin"]').click();
-  cy.get('input[data-qa="first_name"]').type("test-user");
-  cy.get('input[data-qa="last_name"]').type("O'lastname");
-  cy.get('input[data-qa="company"]').type("The biggest company in the world")
-  cy.get('input[data-qa="address"]').type("Wiejska 4, 00-902 Warszawa");
-  cy.get('input[data-qa="address2"]').type("6/8/abcd");
-  cy.get('select[data-qa="country"]').select("New Zealand");
-  cy.get('input[data-qa="state"]').type("Województwo mazowieckie")
-  cy.get('input[data-qa="city"]').type("Warszawa")
-  cy.get('input[data-qa="zipcode"]').type("00-902")
-  cy.get('input[data-qa="mobile_number"]').type("+48512321123")
+  cy.get('input[data-qa="first_name"]').type(users.randomEmailUser.firstName);
+  cy.get('input[data-qa="last_name"]').type(users.randomEmailUser.lastName);
+  cy.get('input[data-qa="company"]').type(users.randomEmailUser.company)
+  cy.get('input[data-qa="address"]').type(users.randomEmailUser.address);
+  cy.get('input[data-qa="address2"]').type(users.randomEmailUser.address2);
+  cy.get('select[data-qa="country"]').select(users.randomEmailUser.country);
+  cy.get('input[data-qa="state"]').type(users.randomEmailUser.state)
+  cy.get('input[data-qa="city"]').type(users.randomEmailUser.city)
+  cy.get('input[data-qa="zipcode"]').type(users.randomEmailUser.zipCode)
+  cy.get('input[data-qa="mobile_number"]').type(users.randomEmailUser.mobileNumber)
   cy.get('button[data-qa="create-account"').click()
   cy.get('h2').contains("Account Created!").should('be.visible');
   cy.get('a[data-qa="continue-button"]').click()
@@ -266,4 +266,17 @@ Cypress.Commands.add("goToCheckout", () => {
 
 Cypress.Commands.add("goToLoginFromCheckout", () => {
   cy.get('p.text-center a[href*="/login"').click()
+})
+
+Cypress.Commands.add("verifyUserDetailsInCheckout", (selectedUser) => {
+  cy.get('li.address_firstname.address_lastname').should("contain", users.randomEmailUser.firstName)
+  cy.get('li.address_firstname.address_lastname').should("contain", users.randomEmailUser.lastName)
+  cy.get('li.address_address1.address_address2').should("contain", users.randomEmailUser.address)
+  cy.get('').should("contain", users.randomEmailUser.)
+  cy.get('').should("contain", users.randomEmailUser.)
+  cy.get('').should("contain", users.randomEmailUser.)
+  cy.get('').should("contain", users.randomEmailUser.)
+  cy.get('').should("contain", users.randomEmailUser.)
+  cy.get('').should("contain", users.randomEmailUser.)
+  cy.get('').should("contain", users.randomEmailUser.)
 })
