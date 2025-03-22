@@ -155,12 +155,15 @@ Cypress.Commands.add("completeAndConfirmFormSubmission", (name?: string, email?:
   cy.get('div.status.alert.alert-success').contains("Success! Your details have been submitted successfully.").should('be.visible');
   cy.get('i.fa.fa-angle-double-left').click()
 });
+
+// Searches for products by name and verifies that the number of results matches the expected amount:
 Cypress.Commands.add("searchAndVerifyProduct", (productName: string, amountOfProducts: number) => {
   cy.get('input#search_product').type(productName)
   cy.get('i.fa.fa-search').click()
   cy.get('h2.title.text-center').should('contain', 'Searched Products')
   cy.get('.product-overlay').should('have.length', amountOfProducts)
 })
+
 Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
   cy.scrollTo('bottom')
   cy.get('h2').contains("Subscription").should('be.visible'); 
@@ -169,6 +172,7 @@ Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
   cy.get('div.col-md-9.form-group').not('.hide').should('be.visible').should('contain','You have been successfully subscribed!');
 })
 
+// Adds the specified number of products to the cart starting from the first one in the product list:
 Cypress.Commands.add("addFirstProductsToCart", (amount: number) => {
   for (let i = 1; i <= amount; i++) {
     cy.get(`a[data-product-id="${i}"]`).eq(0).trigger('mouseover').click();
@@ -183,6 +187,12 @@ Cypress.Commands.add("goToCartAfterAddingProduct", () => {
   cy.get('p.text-center').contains('View Cart').click()
 })
 
+// Verifies the number of distinct products in the cart (regardless of quantity): 
+Cypress.Commands.add("verifyCartProductCount", (amount: number) => {
+  cy.get("i.fa.fa-times").should('have.length', amount)
+}) 
+
+// Verifies unit prices and total prices (unit price × quantity) of specific products in the cart:
 Cypress.Commands.add("verifyCartAmounts", () => {
   cy.get('tbody tr').then(($rows) => {
     const rowCount = $rows.length;
@@ -213,12 +223,11 @@ Cypress.Commands.add("verifyCartAmounts", () => {
   });
 })
 
-Cypress.Commands.add("verifyCartProductCount", (amount: number) => {
-  cy.get("i.fa.fa-times").should('have.length', amount)
+// Adds a product to the cart by its index in the product list:
+Cypress.Commands.add("addProductToCartByIndex", (number) => {
+  cy.get('a.btn.btn-default.add-to-cart').eq((number*2)-2).click();
 })
+
 Cypress.Commands.add("verifyProductQuantityInCart", () => {
 
 })
-Cypress.Commands.add("addProductToCartByIndex", () => {
-})
-

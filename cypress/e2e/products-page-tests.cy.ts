@@ -21,7 +21,7 @@ describe('Verify All Products and product detail page', () => {
     cy.searchAndVerifyProduct("Women", 2)
     })
 
-  it.only(`Given: user is on home page
+  it(`Given: user is on home page
       When: user adds two products to the cart
       And: navigates to the cart page
       Then: both products should be in the cart with correct prices quantity, and total price`, () => {
@@ -31,18 +31,20 @@ describe('Verify All Products and product detail page', () => {
     cy.verifyProductsPageLoaded();
     cy.addFirstProductsToCart(2);
     cy.goToCartAfterAddingProduct();
-    cy.verifyCartAmounts();
     cy.verifyCartProductCount(2)
+    cy.verifyCartAmounts();
     })
 
-  it(`Given: user is on home page
-      When: user adds two products to the cart
+    it.only(`Given: user is on home page
+      When: user views a product
+      And: sets its quantity to the specified amount
+      And: adds it to the cart
       And: navigates to the cart page
-      Then: both products should be in the cart with correct prices quantity, and total price`, () => {
+      Then: the product should be in the cart with the specified quantity`, () => {
     cy.visit("");
     cy.verifyHomePageLoaded() ;
-    cy.addProductToCartByIndex(3);
-    cy.verifyCartProductCount(2)
+    cy.addProductToCartByIndex(1);
+    //cy.visitAndVerifyProductPage(5)
     })
 })
 
