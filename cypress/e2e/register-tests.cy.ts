@@ -9,6 +9,7 @@ describe('Simple register tests', () => {
     cy.verifyHomePageLoaded();
     cy.goTo("loginPage");
     cy.registerRandomUser();
+    cy.deleteCurrentUser();
 
 })
   it(`Given the already registered user 

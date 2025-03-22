@@ -7,14 +7,15 @@ declare namespace Cypress {
     login(email?: string, password?: string, name?: string): Chainable<void>;
     logout(): Chainable<void>;
     tryLoginWithInvalidUser(email: string, password: string): Chainable<void>;
-    registerRandomUser()
+    registerRandomUser(): Chainable<void>;
+    deleteCurrentUser(): Chainable<void>;
     tryToRegisterExistingUser(name: string, email: string): Chainable<void>;
     completeAndConfirmFormSubmission(name?: string, email?: string, subject?: string, message?: string): Chainable<void>;
     
     visitAndVerifyTestCasesPageLoaded(): Chainable<void>;
     visitAndVerifyAllProductsPageLoaded(): Chainable<void>;
     visitAndVerifyProductDetailsPageLoaded(index: number): Chainable<void>;
-    visitAndVerifyCartPageLoaded(): Chainable<void>;
+    visitAndVerifyCartWithItemsLoaded(): Chainable<void>;
 
     searchAndVerifyProduct(productName: sting, amountOfProducts: number): Chainable<void>;
     subscribeAndVerify(email?: string): Chainable<void>;
@@ -26,6 +27,8 @@ declare namespace Cypress {
     addProductToCartByIndex(index: number): Chainable<void>;
     increaseProductQuantity(quantity: number): Chainable<void>;
     addCurrentProductToCart(): Chainable<void>;
-    verifyProductQuantityInCart()
+    verifyProductQuantityInCart(): Chainable<void>;
+    goToCheckout(): Chainable<void>;
+    goToLoginFromCheckout()
   }
 }

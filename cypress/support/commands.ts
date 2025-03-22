@@ -80,14 +80,14 @@ Cypress.Commands.add("visitAndVerifyProductDetailsPageLoaded", (index: number) =
   cy.get('p').contains('Brand:').should('be.visible');
 })
 
-Cypress.Commands.add("visitAndVerifyCartPageLoaded", () => {
-  cy.url().should('eq', 'https://www.automationexercise.com/view_cart');
+Cypress.Commands.add("visitAndVerifyCartWithItemsLoaded", () => {
+  cy.url().should('eq', 'https://automationexercise.com/view_cart');
   cy.get('li.active').should('contain', 'Shopping Cart'); 
-  cy.get('p').contains("Category").should('be.visible'); 
-  cy.get('span').contains("Rs.").should('be.visible'); 
-  cy.get('p').contains('Availability:').should('be.visible');
-  cy.get('p').contains('Condition:').should('be.visible');
-  cy.get('p').contains('Brand:').should('be.visible');
+  cy.get('td.image').should('contain', 'Item');
+  cy.get('td.description').should('contain', 'Description');
+  cy.get('td.price').should('contain', 'Price');
+  cy.get('td.quantity').should('contain', 'Quantity');
+  cy.get('td.total').should('contain', 'Total');
 })
 
 Cypress.Commands.add("login", (email?: string, password?: string, name?: string) => {
@@ -140,9 +140,12 @@ Cypress.Commands.add("registerRandomUser", () => {
   cy.get('h2').contains("Account Created!").should('be.visible');
   cy.get('a[data-qa="continue-button"]').click()
   cy.contains("li", "Logged in as").should("contain", "test-user");
-  cy.get('i.fa.fa-trash-o').click()
-  cy.get('h2').contains("Account Deleted!").should('be.visible');
-  cy.get('a[data-qa="continue-button"]').click()
+})
+
+Cypress.Commands.add("deleteCurrentUser", () => {
+cy.get('i.fa.fa-trash-o').click()
+cy.get('h2').contains("Account Deleted!").should('be.visible');
+cy.get('a[data-qa="continue-button"]').click()
 })
 
 Cypress.Commands.add("tryToRegisterExistingUser", (name: string, email: string) =>{
@@ -255,4 +258,12 @@ Cypress.Commands.add("verifyProductQuantityInCart", () => {
     expect(quantity).to.eq(expectedQantity);
     });
   })
+})
+
+Cypress.Commands.add("goToCheckout", () => {
+  cy.get('a.btn.btn-default.check_out').click()
+})
+
+Cypress.Commands.add("goToLoginFromCheckout", () => {
+  cy.get('p.text-center a[href*="/login"').click()
 })
