@@ -36,6 +36,11 @@ class Navbar {
           throw new Error(`Page "${pageName}" is not defined in the command .goto()`);
       }
     }
+    deleteCurrentUser(): void {
+      cy.get('i.fa.fa-trash-o').click()
+      cy.get('h2').contains("Account Deleted!").should('be.visible');
+      cy.get('a[data-qa="continue-button"]').click()
+      }
   }
   
   const navbar = new Navbar();

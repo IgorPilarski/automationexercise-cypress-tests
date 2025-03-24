@@ -7,11 +7,6 @@ class HomePage {
       cy.get('.nav a[href="/"]').should('be.visible');
       cy.url().should('eq', 'https://automationexercise.com/');
     }
-    deleteCurrentUser(): void {
-    cy.get('i.fa.fa-trash-o').click()
-    cy.get('h2').contains("Account Deleted!").should('be.visible');
-    cy.get('a[data-qa="continue-button"]').click()
-    }
   }
 
   

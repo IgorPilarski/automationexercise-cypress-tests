@@ -12,7 +12,7 @@ describe('Simple register tests', () => {
     homePage.verifyHomePageLoaded();
     navbar.goTo("loginPage");
     loginPage.registerRandomUser();
-    homePage.deleteCurrentUser()
+    navbar.deleteCurrentUser()
 })
   it(`Given the already registered user 
       When trying to register with its credentials
