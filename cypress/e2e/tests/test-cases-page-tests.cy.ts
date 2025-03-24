@@ -1,4 +1,5 @@
 import homePage from "../pages/home-page";
+import testCases from "../pages/test-cases-page";
 
 describe('Verify Test Cases Page', () => {
   it(`Given the user is on the home page 
@@ -7,6 +8,6 @@ describe('Verify Test Cases Page', () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
     cy.goTo("testCasesPage");
-    cy.visitAndVerifyTestCasesPageLoaded();
+    testCases.visitAndVerifyTestCasesPageLoaded();
 })
 })

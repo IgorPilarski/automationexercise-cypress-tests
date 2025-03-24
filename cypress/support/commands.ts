@@ -53,11 +53,11 @@ Cypress.Commands.add('hoverOver', (selector: string) => {
 //   cy.url().should('eq', 'https://automationexercise.com/')
 // })
 
-Cypress.Commands.add('visitAndVerifyTestCasesPageLoaded', () => {
-  cy.url().should('eq', 'https://automationexercise.com/test_cases')
-  cy.get('h2.title.text-center').should("contain","Test Cases");
-  cy.get('section#form').should('be.visible')
-})
+// Cypress.Commands.add('visitAndVerifyTestCasesPageLoaded', () => {
+//   cy.url().should('eq', 'https://automationexercise.com/test_cases')
+//   cy.get('h2.title.text-center').should("contain","Test Cases");
+//   cy.get('section#form').should('be.visible')
+// })
 
 Cypress.Commands.add('visitAndVerifyAllProductsPageLoaded', () => {
   cy.url().should('eq', 'https://automationexercise.com/products')
