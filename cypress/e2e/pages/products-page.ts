@@ -8,6 +8,7 @@ class ProductsPage {
         cy.get('img#sale_image, .sale img').should('be.visible');
         cy.get('div.features_items').should('be.visible');
     }
+    // Searches for products by name and verifies that the number of results matches the expected amount:
     searchAndVerifyProduct(productName: string, amountOfProducts: number):void{
         cy.get('input#search_product').type(productName)
         cy.get('i.fa.fa-search').click()
