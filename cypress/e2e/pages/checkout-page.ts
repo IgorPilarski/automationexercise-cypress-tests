@@ -1,4 +1,5 @@
 import users from '../../fixtures/usersData.json'
+import orderDetails from '../../fixtures/orderDetailsData.json'
 
 class CheckoutPage {
     goToLoginFromCheckout(): void {
@@ -22,7 +23,28 @@ class CheckoutPage {
       cy.get('td.quantity').should('contain', 'Quantity');
       cy.get('td.total').should('contain', 'Total');
     }
+    completeCheckout():void{
+      cy.get('textarea.form-control').type(orderDetails.comment)
+      cy.get('a.btn.btn-default.check_out').click()
+    }
+    enterPaymentDetails():void{
+      cy.get('input[data-qa="name-on-card"]').type(orderDetails.cardName)
+      cy.get('input[data-qa="card-number"]').type(orderDetails.cardNumber)
+      cy.get('input[class="form-control card-cvc"]').type(orderDetails.cvc)
+      cy.get('input[data-qa="expiry-month"]').type(orderDetails.expirationMonth)
+      cy.get('input[data-qa="expiry-year"]').type(orderDetails.expirationYear)
+    }
+    confirmPaymentDetails():void{
+      cy.get('button[data-qa="pay-button"]').click()
+    }
+    verifyOrderCompleted():void{
+      cy.get('h2[data-qa="order-placed"]')
+      .should('contain.text', 'Order Placed!');
+      cy.get('div p').contains('Congratulations! Your order has been confirmed!').should('exist')
+      cy.get('a[data-qa="continue-button"]').click()
+    }
 }
+
   
   const checkoutPage = new CheckoutPage();
   export default checkoutPage;
