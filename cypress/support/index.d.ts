@@ -13,11 +13,11 @@ declare namespace Cypress {
 //    completeAndConfirmFormSubmission(name?: string, email?: string, subject?: string, message?: string): Chainable<void>;
     
     // visitAndVerifyTestCasesPageLoaded(): Chainable<void>;
-    visitAndVerifyAllProductsPageLoaded(): Chainable<void>;
+    // visitAndVerifyAllProductsPageLoaded(): Chainable<void>;
     visitAndVerifyProductDetailsPageLoaded(index: number): Chainable<void>;
     visitAndVerifyCartWithItemsLoaded(): Chainable<void>;
 
-    searchAndVerifyProduct(productName: sting, amountOfProducts: number): Chainable<void>;
+    // searchAndVerifyProduct(productName: string, amountOfProducts: number): Chainable<void>;
     subscribeAndVerify(email?: string): Chainable<void>;
     addFirstProductsToCart(amount: number): Chainable<void>;
     verifyCartAmounts(): Chainable<void>;

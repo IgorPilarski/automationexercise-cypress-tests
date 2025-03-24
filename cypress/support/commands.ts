@@ -59,15 +59,15 @@ Cypress.Commands.add('hoverOver', (selector: string) => {
 //   cy.get('section#form').should('be.visible')
 // })
 
-Cypress.Commands.add('visitAndVerifyAllProductsPageLoaded', () => {
-  cy.url().should('eq', 'https://automationexercise.com/products')
-  cy.get('h2').contains("Category").should('be.visible');
-  cy.get('h2.title.text-center').should("contain", "All Products")
-  cy.get('h2').contains("Brands").should('be.visible');
-  cy.get('input#search_product').should('be.visible');
-  cy.get('img#sale_image, .sale img').should('be.visible');
-  cy.get('div.features_items').should('be.visible');
-})
+// Cypress.Commands.add('visitAndVerifyAllProductsPageLoaded', () => {
+//   cy.url().should('eq', 'https://automationexercise.com/products')
+//   cy.get('h2').contains("Category").should('be.visible');
+//   cy.get('h2.title.text-center').should("contain", "All Products")
+//   cy.get('h2').contains("Brands").should('be.visible');
+//   cy.get('input#search_product').should('be.visible');
+//   cy.get('img#sale_image, .sale img').should('be.visible');
+//   cy.get('div.features_items').should('be.visible');
+// })
 
 Cypress.Commands.add("visitAndVerifyProductDetailsPageLoaded", (index: number) => {
   cy.get(`a[href*="/product_details/"]`).eq(index-1).click()
@@ -169,12 +169,12 @@ Cypress.Commands.add("logout", () => {
 // });
 
 // Searches for products by name and verifies that the number of results matches the expected amount:
-Cypress.Commands.add("searchAndVerifyProduct", (productName: string, amountOfProducts: number) => {
-  cy.get('input#search_product').type(productName)
-  cy.get('i.fa.fa-search').click()
-  cy.get('h2.title.text-center').should('contain', 'Searched Products')
-  cy.get('.product-overlay').should('have.length', amountOfProducts)
-})
+// Cypress.Commands.add("searchAndVerifyProduct", (productName: string, amountOfProducts: number) => {
+//   cy.get('input#search_product').type(productName)
+//   cy.get('i.fa.fa-search').click()
+//   cy.get('h2.title.text-center').should('contain', 'Searched Products')
+//   cy.get('.product-overlay').should('have.length', amountOfProducts)
+// })
 
 Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
   cy.scrollTo('bottom')

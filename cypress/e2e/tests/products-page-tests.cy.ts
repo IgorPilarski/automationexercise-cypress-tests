@@ -1,4 +1,5 @@
 import homePage from "../pages/home-page";
+import productsPage from "../pages/products-page";
 
 describe('Verify All Products and product detail page', () => {
   it(`Given: the user is on the home page
@@ -8,7 +9,7 @@ describe('Verify All Products and product detail page', () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
     cy.goTo("productsPage");
-    cy.visitAndVerifyAllProductsPageLoaded();
+    productsPage.visitAndVerifyAllProductsPageLoaded();
     cy.visitAndVerifyProductDetailsPageLoaded(2);
     })
 
@@ -19,18 +20,18 @@ describe('Verify All Products and product detail page', () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
     cy.goTo("productsPage");
-    cy.visitAndVerifyAllProductsPageLoaded();
-    cy.searchAndVerifyProduct("Women", 2)
+    productsPage.visitAndVerifyAllProductsPageLoaded();productsPage.searchAndVerifyProduct("Women", 2)
     })
 
   it(`Given: user is on home page
-      When: user adds two products to the cart
+      When: the user navigates to the Products page 
+      And: user adds two products to the cart
       And: navigates to the cart page
       Then: both products should be in the cart with correct prices quantity, and total price`, () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
     cy.goTo("productsPage");
-    cy.visitAndVerifyAllProductsPageLoaded();
+    productsPage.visitAndVerifyAllProductsPageLoaded();
     cy.addFirstProductsToCart(2);
     cy.goToCartAfterAddingProduct();
     cy.verifyCartProductCount(2)
