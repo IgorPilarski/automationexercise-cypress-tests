@@ -1,3 +1,4 @@
+import contactPage from "../pages/contact-page";
 import homePage from "../pages/home-page";
 
 describe('Contact Us Form test', () => {
@@ -8,7 +9,7 @@ describe('Contact Us Form test', () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
     cy.goTo("contactPage");
-    cy.completeAndConfirmFormSubmission()
+    contactPage.completeAndConfirmFormSubmission()
     homePage.verifyHomePageLoaded();
 })
 })
