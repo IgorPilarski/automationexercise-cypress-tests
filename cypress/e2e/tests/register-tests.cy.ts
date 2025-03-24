@@ -1,5 +1,6 @@
 import users from "../../fixtures/usersData.json";
 import homePage from "../pages/home-page";
+import loginPage from "../pages/login-page";
 
 describe('Simple register tests', () => {
   it(`Given: the user that attempts to register
@@ -18,6 +19,6 @@ describe('Simple register tests', () => {
       cy.visit("");
       homePage.verifyHomePageLoaded();
       cy.goTo("loginPage");
-      cy.tryToRegisterExistingUser(users.simpleLoginUser.name, users.simpleLoginUser.email);
+      loginPage.tryToRegisterExistingUser(users.simpleLoginUser.name, users.simpleLoginUser.email);
     })
 })
