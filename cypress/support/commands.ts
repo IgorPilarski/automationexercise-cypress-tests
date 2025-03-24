@@ -185,19 +185,19 @@ Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
 })
 
 // Adds the specified number of products to the cart starting from the first one in the product list:
-Cypress.Commands.add("addFirstProductsToCart", (amount: number) => {
-  for (let i = 1; i <= amount; i++) {
-    cy.get(`a[data-product-id="${i}"]`).eq(0).trigger('mouseover').click();
-    if(i<amount){
-      cy.get('button.btn.btn-success.close-modal.btn-block').click()
-    }
-    cy.log(`added product number: ${i}`);
-  }
-}) 
+// Cypress.Commands.add("addFirstProductsToCart", (amount: number) => {
+//   for (let i = 1; i <= amount; i++) {
+//     cy.get(`a[data-product-id="${i}"]`).eq(0).trigger('mouseover').click();
+//     if(i<amount){
+//       cy.get('button.btn.btn-success.close-modal.btn-block').click()
+//     }
+//     cy.log(`added product number: ${i}`);
+//   }
+// }) 
 
-Cypress.Commands.add("goToCartAfterAddingProduct", () => {
-  cy.get('p.text-center').contains('View Cart').click()
-})
+// Cypress.Commands.add("goToCartAfterAddingProduct", () => {
+//   cy.get('p.text-center').contains('View Cart').click()
+// })
 
 // Verifies the number of distinct products in the cart (regardless of quantity): 
 Cypress.Commands.add("verifyCartProductCount", (amount: number) => {
@@ -236,9 +236,9 @@ Cypress.Commands.add("verifyCartAmounts", () => {
 })
 
 // Adds a product to the cart by its index in the product list:
-Cypress.Commands.add("addProductToCartByIndex", (number) => {
-  cy.get('a.btn.btn-default.add-to-cart').eq((number*2)-2).click();
-})
+// Cypress.Commands.add("addProductToCartByIndex", (number) => {
+//   cy.get('a.btn.btn-default.add-to-cart').eq((number*2)-2).click();
+// })
 
 Cypress.Commands.add('increaseProductQuantity', (quantity: number) =>{
   cy.get('#quantity').clear().type(quantity.toString())

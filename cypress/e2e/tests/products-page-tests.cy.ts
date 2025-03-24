@@ -1,3 +1,4 @@
+import productsList from "../components/product-list-component";
 import homePage from "../pages/home-page";
 import productsPage from "../pages/products-page";
 
@@ -32,8 +33,8 @@ describe('Verify All Products and product detail page', () => {
     homePage.verifyHomePageLoaded();
     cy.goTo("productsPage");
     productsPage.visitAndVerifyAllProductsPageLoaded();
-    cy.addFirstProductsToCart(2);
-    cy.goToCartAfterAddingProduct();
+    productsList.addFirstProductsToCart(2);
+    productsList.goToCartAfterAddingProduct();
     cy.verifyCartProductCount(2)
     cy.verifyCartAmounts();
     })
@@ -49,7 +50,7 @@ describe('Verify All Products and product detail page', () => {
   cy.visitAndVerifyProductDetailsPageLoaded(5)
   cy.increaseProductQuantity(4);
   cy.addCurrentProductToCart()
-  cy.goToCartAfterAddingProduct()
+  productsList.goToCartAfterAddingProduct()
   cy.verifyProductQuantityInCart()
   })
 })

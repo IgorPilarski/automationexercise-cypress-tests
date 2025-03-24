@@ -1,3 +1,4 @@
+import productsList from "../components/product-list-component";
 import homePage from "../pages/home-page";
 import loginPage from "../pages/login-page";
 
@@ -10,8 +11,8 @@ describe('Place Order tests', () => {
         And: see a success message and delete the account afterwards`, () => {
       cy.visit("");
       homePage.verifyHomePageLoaded();
-      cy.addFirstProductsToCart(3);
-      cy.goToCartAfterAddingProduct();
+      productsList.addFirstProductsToCart(3);
+      productsList.goToCartAfterAddingProduct();
       cy.visitAndVerifyCartWithItemsLoaded();
       cy.goToCheckout();
       cy.goToLoginFromCheckout()
