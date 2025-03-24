@@ -14,7 +14,7 @@ declare namespace Cypress {
     
     // visitAndVerifyTestCasesPageLoaded(): Chainable<void>;
     // visitAndVerifyAllProductsPageLoaded(): Chainable<void>;
-    visitAndVerifyProductDetailsPageLoaded(index: number): Chainable<void>;
+    // visitAndVerifyProductDetailsPageLoaded(index: number): Chainable<void>;
     visitAndVerifyCartWithItemsLoaded(): Chainable<void>;
 
     // searchAndVerifyProduct(productName: string, amountOfProducts: number): Chainable<void>;
@@ -25,8 +25,8 @@ declare namespace Cypress {
     // goToCartAfterAddingProduct(): Chainable<void>;
     verifyCartProductCount(amount: number): Chainable<void>;
     // addProductToCartByIndex(index: number): Chainable<void>;
-    increaseProductQuantity(quantity: number): Chainable<void>;
-    addCurrentProductToCart(): Chainable<void>;
+    // increaseProductQuantity(quantity: number): Chainable<void>;
+    // addCurrentProductToCart(): Chainable<void>;
     verifyProductQuantityInCart(): Chainable<void>;
     goToCheckout(): Chainable<void>;
     goToLoginFromCheckout()

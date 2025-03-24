@@ -1,5 +1,6 @@
 import productsList from "../components/product-list-component";
 import homePage from "../pages/home-page";
+import productDetailsPage from "../pages/product-details-page";
 import productsPage from "../pages/products-page";
 
 describe('Verify All Products and product detail page', () => {
@@ -11,7 +12,7 @@ describe('Verify All Products and product detail page', () => {
     homePage.verifyHomePageLoaded();
     cy.goTo("productsPage");
     productsPage.visitAndVerifyAllProductsPageLoaded();
-    cy.visitAndVerifyProductDetailsPageLoaded(2);
+    productDetailsPage.visitAndVerifyProductDetailsPageLoaded(2);
     })
 
   it(`Given: user is on home page
@@ -47,9 +48,9 @@ describe('Verify All Products and product detail page', () => {
       Then: the product should be in the cart with the specified quantity`, () => {
   cy.visit("");
   homePage.verifyHomePageLoaded();
-  cy.visitAndVerifyProductDetailsPageLoaded(5)
-  cy.increaseProductQuantity(4);
-  cy.addCurrentProductToCart()
+  productDetailsPage.visitAndVerifyProductDetailsPageLoaded(5)
+  productDetailsPage.increaseProductQuantity(4);
+  productDetailsPage.addCurrentProductToCart()
   productsList.goToCartAfterAddingProduct()
   cy.verifyProductQuantityInCart()
   })
