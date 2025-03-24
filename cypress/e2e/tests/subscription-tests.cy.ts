@@ -1,3 +1,4 @@
+import footer from "../components/footer-component";
 import homePage from "../pages/home-page";
 
 describe('Verify Subscription in home page', () => {
@@ -7,7 +8,7 @@ describe('Verify Subscription in home page', () => {
       Then: the success message 'You have been successfully subscribed!' should be visible`, () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
-    cy.subscribeAndVerify();
+    footer.subscribeAndVerify();
 })
   it(`Given: user is on Cart page
       When: user scrolls down to the footer 
@@ -16,6 +17,6 @@ describe('Verify Subscription in home page', () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
     cy.goTo("cartPage");
-    cy.subscribeAndVerify();
+    footer.subscribeAndVerify();
 })
 })
