@@ -1,3 +1,4 @@
+import cartTable from "../components/cart-table-component";
 import navbar from "../components/navbar-component";
 import productsList from "../components/product-list-component";
 import cartPage from "../pages/cart-page";
@@ -14,14 +15,17 @@ describe('Place Order tests', () => {
         And: see a success message and delete the account afterwards`, () => {
       cy.visit("");
       homePage.verifyHomePageLoaded();
-      productsList.addFirstProductsToCart(3);
+      productsList.addFirstProductsToCart(3)
       productsList.goToCartAfterAddingProduct();
       cartPage.visitAndVerifyCartWithItemsLoaded();
       cartPage.goToCheckout();
       checkoutPage.goToLoginFromCheckout()
       loginPage.registerRandomUser()
       navbar.goTo('cartPage')
+      cartTable.saveCartItems()
       cartPage.goToCheckout();
       checkoutPage.verifyUserDetailsInCheckout("randomEmailUser")
+      checkoutPage.verifyReviewYourOrder()
+      cartTable.compareCheckoutWithSavedCartItems()
       })
 })
