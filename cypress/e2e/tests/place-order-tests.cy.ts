@@ -1,4 +1,5 @@
 import homePage from "../pages/home-page";
+import loginPage from "../pages/login-page";
 
 describe('Place Order tests', () => {
     it(`Given: user is on home page
@@ -14,7 +15,7 @@ describe('Place Order tests', () => {
       cy.visitAndVerifyCartWithItemsLoaded();
       cy.goToCheckout();
       cy.goToLoginFromCheckout()
-      cy.registerRandomUser()
+      loginPage.registerRandomUser()
       cy.goTo('cartPage')
       cy.goToCheckout();
       cy.verifyUserDetailsInCheckout("randomEmailUser")
