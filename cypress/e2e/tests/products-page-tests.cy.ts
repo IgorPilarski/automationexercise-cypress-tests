@@ -1,4 +1,5 @@
 import productsList from "../components/product-list-component";
+import cartPage from "../pages/cart-page";
 import homePage from "../pages/home-page";
 import productDetailsPage from "../pages/product-details-page";
 import productsPage from "../pages/products-page";
@@ -36,8 +37,8 @@ describe('Verify All Products and product detail page', () => {
     productsPage.visitAndVerifyAllProductsPageLoaded();
     productsList.addFirstProductsToCart(2);
     productsList.goToCartAfterAddingProduct();
-    cy.verifyCartProductCount(2)
-    cy.verifyCartAmounts();
+    cartPage.verifyCartProductCount(2)
+    cartPage.verifyCartAmounts();
     })
 
   it(`Given: user is on home page
@@ -52,7 +53,7 @@ describe('Verify All Products and product detail page', () => {
   productDetailsPage.increaseProductQuantity(4);
   productDetailsPage.addCurrentProductToCart()
   productsList.goToCartAfterAddingProduct()
-  cy.verifyProductQuantityInCart()
+  cartPage.verifyProductQuantityInCart()
   })
 })
 

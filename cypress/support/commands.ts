@@ -80,15 +80,15 @@ Cypress.Commands.add('hoverOver', (selector: string) => {
 //   cy.get('p').contains('Brand:').should('be.visible');
 // })
 
-Cypress.Commands.add("visitAndVerifyCartWithItemsLoaded", () => {
-  cy.url().should('eq', 'https://automationexercise.com/view_cart');
-  cy.get('li.active').should('contain', 'Shopping Cart'); 
-  cy.get('td.image').should('contain', 'Item');
-  cy.get('td.description').should('contain', 'Description');
-  cy.get('td.price').should('contain', 'Price');
-  cy.get('td.quantity').should('contain', 'Quantity');
-  cy.get('td.total').should('contain', 'Total');
-})
+// Cypress.Commands.add("visitAndVerifyCartWithItemsLoaded", () => {
+//   cy.url().should('eq', 'https://automationexercise.com/view_cart');
+//   cy.get('li.active').should('contain', 'Shopping Cart'); 
+//   cy.get('td.image').should('contain', 'Item');
+//   cy.get('td.description').should('contain', 'Description');
+//   cy.get('td.price').should('contain', 'Price');
+//   cy.get('td.quantity').should('contain', 'Quantity');
+//   cy.get('td.total').should('contain', 'Total');
+// })
 
 // Cypress.Commands.add("login", (email?: string, password?: string, name?: string) => {
 //   cy.get('h2').contains("Login to your account").should('be.visible');
@@ -176,13 +176,13 @@ Cypress.Commands.add("logout", () => {
 //   cy.get('.product-overlay').should('have.length', amountOfProducts)
 // })
 
-Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
-  cy.scrollTo('bottom')
-  cy.get('h2').contains("Subscription").should('be.visible'); 
-  cy.get('input#susbscribe_email').type(email || users.simpleLoginUser.email)
-  cy.get('i.fa.fa-arrow-circle-o-right').click()
-  cy.get('div.col-md-9.form-group').not('.hide').should('be.visible').should('contain','You have been successfully subscribed!');
-})
+// Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
+//   cy.scrollTo('bottom')
+//   cy.get('h2').contains("Subscription").should('be.visible'); 
+//   cy.get('input#susbscribe_email').type(email || users.simpleLoginUser.email)
+//   cy.get('i.fa.fa-arrow-circle-o-right').click()
+//   cy.get('div.col-md-9.form-group').not('.hide').should('be.visible').should('contain','You have been successfully subscribed!');
+// })
 
 // Adds the specified number of products to the cart starting from the first one in the product list:
 // Cypress.Commands.add("addFirstProductsToCart", (amount: number) => {
@@ -200,40 +200,40 @@ Cypress.Commands.add("subscribeAndVerify", (email?: string) =>{
 // })
 
 // Verifies the number of distinct products in the cart (regardless of quantity): 
-Cypress.Commands.add("verifyCartProductCount", (amount: number) => {
-  cy.get("i.fa.fa-times").should('have.length', amount)
-}) 
+// Cypress.Commands.add("verifyCartProductCount", (amount: number) => {
+//   cy.get("i.fa.fa-times").should('have.length', amount)
+// }) 
 
 // Verifies unit prices and total prices (unit price × quantity) of specific products in the cart:
-Cypress.Commands.add("verifyCartAmounts", () => {
-  cy.get('tbody tr').then(($rows) => {
-    const rowCount = $rows.length;
+// Cypress.Commands.add("verifyCartAmounts", () => {
+//   cy.get('tbody tr').then(($rows) => {
+//     const rowCount = $rows.length;
 
-    for (let i = 0; i < rowCount; i++) {
-      cy.get('tbody tr').eq(i).then(($row) => {
+//     for (let i = 0; i < rowCount; i++) {
+//       cy.get('tbody tr').eq(i).then(($row) => {
 
-        cy.get('td.cart_price').eq(i)
-        .invoke('text')
-        .then((priceAmount) => {
-          const price = parseInt(priceAmount.replace(/[^\d]/g, ''), 10);
-          cy.get('td.cart_quantity').eq(i)
-            .invoke('text')
-            .then((quantityValue) => {
-              const quantity = parseInt(quantityValue.trim(), 10);
-              const expectedTotal = price * quantity;
+//         cy.get('td.cart_price').eq(i)
+//         .invoke('text')
+//         .then((priceAmount) => {
+//           const price = parseInt(priceAmount.replace(/[^\d]/g, ''), 10);
+//           cy.get('td.cart_quantity').eq(i)
+//             .invoke('text')
+//             .then((quantityValue) => {
+//               const quantity = parseInt(quantityValue.trim(), 10);
+//               const expectedTotal = price * quantity;
 
-              cy.get('td.cart_total').eq(i)
-                .invoke('text')
-                .then((totalAmount) => {
-                  const actualTotal = parseInt(totalAmount.replace(/[^\d]/g, ''), 10);
-                  expect(actualTotal).to.eq(expectedTotal);
-                });
-            });
-        });
-      });
-    }
-  });
-})
+//               cy.get('td.cart_total').eq(i)
+//                 .invoke('text')
+//                 .then((totalAmount) => {
+//                   const actualTotal = parseInt(totalAmount.replace(/[^\d]/g, ''), 10);
+//                   expect(actualTotal).to.eq(expectedTotal);
+//                 });
+//             });
+//         });
+//       });
+//     }
+//   });
+// })
 
 // Adds a product to the cart by its index in the product list:
 // Cypress.Commands.add("addProductToCartByIndex", (number) => {
@@ -249,20 +249,20 @@ Cypress.Commands.add("verifyCartAmounts", () => {
 //   cy.get('button.btn.btn-default.cart').click()
 // })
 
-Cypress.Commands.add("verifyProductQuantityInCart", () => {
-  cy.get('@productQuantity').then((expectedQantity) => {
-    cy.get('td.cart_quantity button.disabled')
-    .invoke('text')
-    .then((text) => {
-    const quantity = parseInt(text.trim());
-    expect(quantity).to.eq(expectedQantity);
-    });
-  })
-})
+// Cypress.Commands.add("verifyProductQuantityInCart", () => {
+//   cy.get('@productQuantity').then((expectedQantity) => {
+//     cy.get('td.cart_quantity button.disabled')
+//     .invoke('text')
+//     .then((text) => {
+//     const quantity = parseInt(text.trim());
+//     expect(quantity).to.eq(expectedQantity);
+//     });
+//   })
+// })
 
-Cypress.Commands.add("goToCheckout", () => {
-  cy.get('a.btn.btn-default.check_out').click()
-})
+// Cypress.Commands.add("goToCheckout", () => {
+//   cy.get('a.btn.btn-default.check_out').click()
+// })
 
 Cypress.Commands.add("goToLoginFromCheckout", () => {
   cy.get('p.text-center a[href*="/login"').click()

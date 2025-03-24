@@ -1,4 +1,5 @@
 import productsList from "../components/product-list-component";
+import cartPage from "../pages/cart-page";
 import homePage from "../pages/home-page";
 import loginPage from "../pages/login-page";
 
@@ -13,12 +14,12 @@ describe('Place Order tests', () => {
       homePage.verifyHomePageLoaded();
       productsList.addFirstProductsToCart(3);
       productsList.goToCartAfterAddingProduct();
-      cy.visitAndVerifyCartWithItemsLoaded();
-      cy.goToCheckout();
+      cartPage.visitAndVerifyCartWithItemsLoaded();
+      cartPage.goToCheckout();
       cy.goToLoginFromCheckout()
       loginPage.registerRandomUser()
       cy.goTo('cartPage')
-      cy.goToCheckout();
+      cartPage.goToCheckout();
       cy.verifyUserDetailsInCheckout("randomEmailUser")
       })
 })
