@@ -2,8 +2,6 @@
 
 declare namespace Cypress {
   interface Chainable {
-    goTo(page: string): Chainable<void>;
-    logout(): Chainable<void>;
     hoverOver(selector: string): Chainable<void>;
   }
 }
@@ -11,6 +9,8 @@ declare namespace Cypress {
 
 
 /*old commands, to delete:
+    // goTo(page: string): Chainable<void>;
+    // logout(): Chainable<void>;
     // verifyHomePageLoaded(): Chainable<void>;
     // login(email?: string, password?: string, name?: string): Chainable<void>;
     // tryLoginWithInvalidUser(email: string, password: string): Chainable<void>;
@@ -37,3 +37,4 @@ declare namespace Cypress {
     // goToCheckout(): Chainable<void>;
     // goToLoginFromCheckout()
     // verifyUserDetailsInCheckout(selecterUser: string): Chainable<void>;
+    */

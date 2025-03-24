@@ -1,4 +1,5 @@
 import users from "../../fixtures/usersData.json";
+import navbar from "../components/navbar-component";
 import homePage from "../pages/home-page";
 import loginPage from "../pages/login-page";
 
@@ -9,16 +10,16 @@ describe('Simple login tests', () => {
       And: they should be able to logout`, () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
-    cy.goTo("loginPage");
+    navbar.goTo("loginPage");
     loginPage.login()
-    cy.logout();
+    navbar.logout();
 })
   it(`Given a non existing user
       When they enter invalid credentials
       Then they should not be logged in`, () => {
       cy.visit("");
       homePage.verifyHomePageLoaded();
-      cy.goTo("loginPage");
+      navbar.goTo("loginPage");
       loginPage.tryLoginWithInvalidUser(users.notExistingUser.email, users.notExistingUser.password);
     })
 })

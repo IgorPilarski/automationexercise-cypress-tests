@@ -1,3 +1,4 @@
+import navbar from "../components/navbar-component";
 import productsList from "../components/product-list-component";
 import cartPage from "../pages/cart-page";
 import checkoutPage from "../pages/checkout-page";
@@ -19,7 +20,7 @@ describe('Place Order tests', () => {
       cartPage.goToCheckout();
       checkoutPage.goToLoginFromCheckout()
       loginPage.registerRandomUser()
-      cy.goTo('cartPage')
+      navbar.goTo('cartPage')
       cartPage.goToCheckout();
       checkoutPage.verifyUserDetailsInCheckout("randomEmailUser")
       })

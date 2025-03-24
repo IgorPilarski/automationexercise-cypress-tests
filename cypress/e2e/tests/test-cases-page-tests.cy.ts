@@ -1,3 +1,4 @@
+import navbar from "../components/navbar-component";
 import homePage from "../pages/home-page";
 import testCases from "../pages/test-cases-page";
 
@@ -7,7 +8,7 @@ describe('Verify Test Cases Page', () => {
       Then the Test Cases page should be visible`, () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
-    cy.goTo("testCasesPage");
+    navbar.goTo("testCasesPage");
     testCases.visitAndVerifyTestCasesPageLoaded();
 })
 })

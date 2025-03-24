@@ -5,40 +5,40 @@ import contactDormData from "../fixtures/contactFormData.json";
 
 import { generateTestEmail } from './utils';
 
-Cypress.Commands.add('goTo', (pageName: string) => {
-  const pages: { [key: string]: () => void } = {
-      homePage: () => {
-        cy.get('li').contains('Home').click()
-      },
-      productsPage: () => {
-        cy.get('li').contains('Products').click()
-      },
-      cartPage: () => {
-        cy.get('li').contains('Cart').click()
-      },
-      loginPage: () => {
-        cy.get('li').contains('Login').click()
-      },
-      testCasesPage: () => {
-        cy.get('li').contains('Test Cases').click()
-      },
-      apiTestingPage: () => {
-        cy.get('li').contains('API Testing').click()
-      },
-      tutorialsRedirect: () => {
-        cy.get('li').contains('Video Tutorials').click()
-      },
-      contactPage: () => {
-        cy.get('li').contains('Contact us').click()
-      }
-  };
+// Cypress.Commands.add('goTo', (pageName: string) => {
+//   const pages: { [key: string]: () => void } = {
+//       homePage: () => {
+//         cy.get('li').contains('Home').click()
+//       },
+//       productsPage: () => {
+//         cy.get('li').contains('Products').click()
+//       },
+//       cartPage: () => {
+//         cy.get('li').contains('Cart').click()
+//       },
+//       loginPage: () => {
+//         cy.get('li').contains('Login').click()
+//       },
+//       testCasesPage: () => {
+//         cy.get('li').contains('Test Cases').click()
+//       },
+//       apiTestingPage: () => {
+//         cy.get('li').contains('API Testing').click()
+//       },
+//       tutorialsRedirect: () => {
+//         cy.get('li').contains('Video Tutorials').click()
+//       },
+//       contactPage: () => {
+//         cy.get('li').contains('Contact us').click()
+//       }
+//   };
 
-  if (pages[pageName]) {
-      pages[pageName](); 
-  }else {
-    throw new Error(`Page "${pageName}" is not defined in the command .goto()`);
-}
-});
+//   if (pages[pageName]) {
+//       pages[pageName](); 
+//   }else {
+//     throw new Error(`Page "${pageName}" is not defined in the command .goto()`);
+// }
+// });
 
 Cypress.Commands.add('hoverOver', (selector: string) => {
   cy.get(selector).trigger('mouseover');
@@ -98,10 +98,10 @@ Cypress.Commands.add('hoverOver', (selector: string) => {
 //   cy.contains("li", "Logged in as").should("contain", name || users.simpleLoginUser.name);
 // })
 
-Cypress.Commands.add("logout", () => {
-  cy.get('li').contains('li', 'Logout').click()
-  cy.get('li').contains('Login').should('exist')
-})
+// Cypress.Commands.add("logout", () => {
+//   cy.get('li').contains('li', 'Logout').click()
+//   cy.get('li').contains('Login').should('exist')
+// })
 
 // Cypress.Commands.add("tryLoginWithInvalidUser", (email: string, password: string) => {
 //   cy.get('h2').contains("Login to your account").should('be.visible');

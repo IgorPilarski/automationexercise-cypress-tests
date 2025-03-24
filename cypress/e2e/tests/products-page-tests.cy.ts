@@ -1,3 +1,4 @@
+import navbar from "../components/navbar-component";
 import productsList from "../components/product-list-component";
 import cartPage from "../pages/cart-page";
 import homePage from "../pages/home-page";
@@ -11,7 +12,7 @@ describe('Verify All Products and product detail page', () => {
       Then: the product details page should be visible with product information`, () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
-    cy.goTo("productsPage");
+    navbar.goTo("productsPage");
     productsPage.visitAndVerifyAllProductsPageLoaded();
     productDetailsPage.visitAndVerifyProductDetailsPageLoaded(2);
     })
@@ -22,7 +23,7 @@ describe('Verify All Products and product detail page', () => {
       And: all related products should be displayed`, () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
-    cy.goTo("productsPage");
+    navbar.goTo("productsPage");
     productsPage.visitAndVerifyAllProductsPageLoaded();productsPage.searchAndVerifyProduct("Women", 2)
     })
 
@@ -33,7 +34,7 @@ describe('Verify All Products and product detail page', () => {
       Then: both products should be in the cart with correct prices quantity, and total price`, () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
-    cy.goTo("productsPage");
+    navbar.goTo("productsPage");
     productsPage.visitAndVerifyAllProductsPageLoaded();
     productsList.addFirstProductsToCart(2);
     productsList.goToCartAfterAddingProduct();

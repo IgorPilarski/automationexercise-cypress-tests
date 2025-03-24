@@ -1,4 +1,5 @@
 import users from "../../fixtures/usersData.json";
+import navbar from "../components/navbar-component";
 import homePage from "../pages/home-page";
 import loginPage from "../pages/login-page";
 
@@ -9,16 +10,16 @@ describe('Simple register tests', () => {
       AND: the new user should be able delete his account`, () => {
     cy.visit("");
     homePage.verifyHomePageLoaded();
-    cy.goTo("loginPage");
+    navbar.goTo("loginPage");
     loginPage.registerRandomUser();
     homePage.deleteCurrentUser()
 })
   it(`Given the already registered user 
       When trying to register with its credentials
       Then they should not be registered`, () => {
-      cy.visit("");
-      homePage.verifyHomePageLoaded();
-      cy.goTo("loginPage");
-      loginPage.tryToRegisterExistingUser(users.simpleLoginUser.name, users.simpleLoginUser.email);
+    cy.visit("");
+    homePage.verifyHomePageLoaded();
+    navbar.goTo("loginPage");
+    loginPage.tryToRegisterExistingUser(users.simpleLoginUser.name, users.simpleLoginUser.email);
     })
 })
