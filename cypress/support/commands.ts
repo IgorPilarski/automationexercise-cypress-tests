@@ -44,14 +44,14 @@ Cypress.Commands.add('hoverOver', (selector: string) => {
   cy.get(selector).trigger('mouseover');
 });
 
-Cypress.Commands.add('verifyHomePageLoaded', () => {
-  cy.get('.logo img').should('be.visible');
-  cy.title().should('eq', 'Automation Exercise');
-  cy.get('#slider').should('be.visible')
-  cy.get('div#slider-carousel').should('be.visible')
-  cy.get('.nav a[href="/"]').should('be.visible')
-  cy.url().should('eq', 'https://automationexercise.com/')
-})
+// Cypress.Commands.add('verifyHomePageLoaded', () => {
+//   cy.get('.logo img').should('be.visible');
+//   cy.title().should('eq', 'Automation Exercise');
+//   cy.get('#slider').should('be.visible')
+//   cy.get('div#slider-carousel').should('be.visible')
+//   cy.get('.nav a[href="/"]').should('be.visible')
+//   cy.url().should('eq', 'https://automationexercise.com/')
+// })
 
 Cypress.Commands.add('visitAndVerifyTestCasesPageLoaded', () => {
   cy.url().should('eq', 'https://automationexercise.com/test_cases')
@@ -140,12 +140,6 @@ Cypress.Commands.add("registerRandomUser", () => {
   cy.get('h2').contains("Account Created!").should('be.visible');
   cy.get('a[data-qa="continue-button"]').click()
   cy.contains("li", "Logged in as").should("contain", "test-user");
-})
-
-Cypress.Commands.add("deleteCurrentUser", () => {
-cy.get('i.fa.fa-trash-o').click()
-cy.get('h2').contains("Account Deleted!").should('be.visible');
-cy.get('a[data-qa="continue-button"]').click()
 })
 
 Cypress.Commands.add("tryToRegisterExistingUser", (name: string, email: string) =>{
@@ -268,15 +262,15 @@ Cypress.Commands.add("goToLoginFromCheckout", () => {
   cy.get('p.text-center a[href*="/login"').click()
 })
 
-Cypress.Commands.add("verifyUserDetailsInCheckout", (selectedUser) => {
-  cy.get('li.address_firstname.address_lastname').should("contain", users.randomEmailUser.firstName)
-  cy.get('li.address_firstname.address_lastname').should("contain", users.randomEmailUser.lastName)
-  cy.get('li.address_address1.address_address2').should("contain", users.randomEmailUser.address)
-  cy.get('').should("contain", users.randomEmailUser.)
-  cy.get('').should("contain", users.randomEmailUser.)
-  cy.get('').should("contain", users.randomEmailUser.)
-  cy.get('').should("contain", users.randomEmailUser.)
-  cy.get('').should("contain", users.randomEmailUser.)
-  cy.get('').should("contain", users.randomEmailUser.)
-  cy.get('').should("contain", users.randomEmailUser.)
-})
+// Cypress.Commands.add("verifyUserDetailsInCheckout", (selectedUser) => {
+//   cy.get('li.address_firstname.address_lastname').should("contain", users.randomEmailUser.firstName)
+//   cy.get('li.address_firstname.address_lastname').should("contain", users.randomEmailUser.lastName)
+//   cy.get('li.address_address1.address_address2').should("contain", users.randomEmailUser.address)
+//   cy.get('').should("contain", users.randomEmailUser.)
+//   cy.get('').should("contain", users.randomEmailUser.)
+//   cy.get('').should("contain", users.randomEmailUser.)
+//   cy.get('').should("contain", users.randomEmailUser.)
+//   cy.get('').should("contain", users.randomEmailUser.)
+//   cy.get('').should("contain", users.randomEmailUser.)
+//   cy.get('').should("contain", users.randomEmailUser.)
+// })

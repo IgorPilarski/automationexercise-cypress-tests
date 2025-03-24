@@ -1,4 +1,5 @@
-import users from "../fixtures/usersData.json";
+import users from "../../fixtures/usersData.json";
+import homePage from "../pages/home-page";
 
 describe('Simple register tests', () => {
   it(`Given: the user that attempts to register
@@ -6,17 +7,16 @@ describe('Simple register tests', () => {
       Then: the user should be successfully registered  
       AND: the new user should be able delete his account`, () => {
     cy.visit("");
-    cy.verifyHomePageLoaded();
+    homePage.verifyHomePageLoaded();
     cy.goTo("loginPage");
     cy.registerRandomUser();
-    cy.deleteCurrentUser();
-
+    homePage.deleteCurrentUser()
 })
   it(`Given the already registered user 
       When trying to register with its credentials
       Then they should not be registered`, () => {
       cy.visit("");
-      cy.verifyHomePageLoaded();
+      homePage.verifyHomePageLoaded();
       cy.goTo("loginPage");
       cy.tryToRegisterExistingUser(users.simpleLoginUser.name, users.simpleLoginUser.email);
     })
