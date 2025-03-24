@@ -1,5 +1,6 @@
 import productsList from "../components/product-list-component";
 import cartPage from "../pages/cart-page";
+import checkoutPage from "../pages/checkout-page";
 import homePage from "../pages/home-page";
 import loginPage from "../pages/login-page";
 
@@ -16,10 +17,10 @@ describe('Place Order tests', () => {
       productsList.goToCartAfterAddingProduct();
       cartPage.visitAndVerifyCartWithItemsLoaded();
       cartPage.goToCheckout();
-      cy.goToLoginFromCheckout()
+      checkoutPage.goToLoginFromCheckout()
       loginPage.registerRandomUser()
       cy.goTo('cartPage')
       cartPage.goToCheckout();
-      cy.verifyUserDetailsInCheckout("randomEmailUser")
+      checkoutPage.verifyUserDetailsInCheckout("randomEmailUser")
       })
 })
