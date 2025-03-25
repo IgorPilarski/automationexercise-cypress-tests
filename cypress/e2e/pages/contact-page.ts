@@ -9,7 +9,7 @@ class ContactPage {
     message?: string
   ): void {
     cy.get('h2').contains('Get In Touch').should('be.visible');
-    cy.get('input[data-qa="name"]').type(name || users.simpleLoginUser.name);
+    cy.get('input[data-qa="name"]').type(name || users.simpleLoginUser.firstName);
     cy.get('input[data-qa="email"]').type(email || users.simpleLoginUser.email);
     cy.get('input[data-qa="subject"]').type(subject || contactForm.subject);
     cy.get('textarea[data-qa="message"]').type(message || contactForm.message);

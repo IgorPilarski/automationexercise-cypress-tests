@@ -20,6 +20,9 @@ describe('Simple register tests', () => {
     cy.visit('');
     homePage.verifyHomePageLoaded();
     navbar.goTo('loginPage');
-    loginPage.tryToRegisterExistingUser(users.simpleLoginUser.name, users.simpleLoginUser.email);
+    loginPage.tryToRegisterExistingUser(
+      users.simpleLoginUser.firstName,
+      users.simpleLoginUser.email
+    );
   });
 });
