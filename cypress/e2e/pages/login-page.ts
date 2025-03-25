@@ -7,7 +7,7 @@ class LoginPage {
     cy.get('input[data-qa="login-email"]').type(email || users.simpleLoginUser.email);
     cy.get('input[data-qa="login-password"]').type(password || users.simpleLoginUser.password);
     cy.get('button[type="submit"]').contains('Login').click();
-    cy.contains('li', 'Logged in as').should('contain', name || users.simpleLoginUser.name);
+    cy.contains('li', 'Logged in as').should('contain', name || users.simpleLoginUser.firstName);
   }
   tryLoginWithInvalidUser(email: string, password: string): void {
     cy.get('h2').contains('Login to your account').should('be.visible');

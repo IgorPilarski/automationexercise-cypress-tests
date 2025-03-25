@@ -1,29 +1,30 @@
-import users from '../../fixtures/usersData.json';
 import orderDetails from '../../fixtures/orderDetailsData.json';
+
+type userTypes = {
+  firstName: string;
+  lastName?: string;
+  company?: string;
+  address?: string;
+  zipCode?: string;
+  country?: string;
+  mobileNumber?: string;
+};
 
 class CheckoutPage {
   goToLoginFromCheckout(): void {
     cy.get('p.text-center a[href*="/login"').click();
   }
-  verifyUserDetailsInCheckout(selectedUser: string): void {
+  verifyUserDetailsInCheckout(user: userTypes): void {
     cy.get('h2.heading').contains('Address Details').should('exist');
-    cy.get('li.address_firstname.address_lastname')
-      .eq(0)
-      .should('contain', users.randomEmailUser.firstName);
-    cy.get('li.address_firstname.address_lastname')
-      .eq(0)
-      .should('contain', users.randomEmailUser.lastName);
-    cy.get('li.address_address1.address_address2')
-      .eq(0)
-      .should('contain', users.randomEmailUser.company);
-    cy.get('li.address_address1.address_address2')
-      .eq(1)
-      .should('contain', users.randomEmailUser.address);
+    cy.get('li.address_firstname.address_lastname').eq(0).should('contain', user.firstName);
+    cy.get('li.address_firstname.address_lastname').eq(0).should('contain', user.lastName);
+    cy.get('li.address_address1.address_address2').eq(0).should('contain', user.company);
+    cy.get('li.address_address1.address_address2').eq(1).should('contain', user.address);
     cy.get('li.address_city.address_state_name.address_postcode')
       .eq(0)
-      .should('contain', users.randomEmailUser.zipCode);
-    cy.get('li.address_country_name').eq(0).should('contain', users.randomEmailUser.country);
-    cy.get('li.address_phone').eq(0).should('contain', users.randomEmailUser.mobileNumber);
+      .should('contain', user.zipCode);
+    cy.get('li.address_country_name').eq(0).should('contain', user.country);
+    cy.get('li.address_phone').eq(0).should('contain', user.mobileNumber);
   }
   verifyReviewYourOrder(): void {
     cy.get('h2.heading').contains('Review Your Order').should('exist');

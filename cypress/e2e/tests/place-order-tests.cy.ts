@@ -25,7 +25,7 @@ describe('Place Order tests', () => {
     navbar.goTo('cartPage');
     cartTable.saveCartItems();
     cartPage.goToCheckout();
-    checkoutPage.verifyUserDetailsInCheckout('randomEmailUser');
+    checkoutPage.verifyUserDetailsInCheckout(users.randomEmailUser);
     checkoutPage.verifyReviewYourOrder();
     cartTable.compareCheckoutWithSavedCartItems();
     checkoutPage.completeCheckout();
@@ -51,7 +51,7 @@ describe('Place Order tests', () => {
     cartPage.visitAndVerifyCartWithItemsLoaded();
     cartTable.saveCartItems();
     cartPage.goToCheckout();
-    checkoutPage.verifyUserDetailsInCheckout('randomEmailUser');
+    checkoutPage.verifyUserDetailsInCheckout(users.randomEmailUser);
     cartTable.compareCheckoutWithSavedCartItems();
     checkoutPage.completeCheckout();
     checkoutPage.enterPaymentDetails();
@@ -68,18 +68,21 @@ describe('Place Order tests', () => {
     cy.visit('');
     homePage.verifyHomePageLoaded();
     navbar.goTo('loginPage');
-    loginPage.login(users.simpleLoginUser.email, users.simpleLoginUser.password);
+    loginPage.login(
+      users.simpleLoginUser.email,
+      users.simpleLoginUser.password,
+      users.simpleLoginUser.firstName
+    );
     productsList.addFirstProductsToCart(3);
     navbar.goTo('cartPage');
     cartPage.visitAndVerifyCartWithItemsLoaded();
     cartTable.saveCartItems();
     cartPage.goToCheckout();
-    // checkoutPage.verifyUserDetailsInCheckout('randomEmailUser');
+    checkoutPage.verifyUserDetailsInCheckout(users.simpleLoginUser);
     cartTable.compareCheckoutWithSavedCartItems();
     checkoutPage.completeCheckout();
     checkoutPage.enterPaymentDetails();
     checkoutPage.confirmPaymentDetails();
     checkoutPage.verifyOrderCompleted();
-    navbar.deleteCurrentUser();
   });
 });
