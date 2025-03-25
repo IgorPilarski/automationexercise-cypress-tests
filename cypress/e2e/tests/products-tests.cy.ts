@@ -5,7 +5,7 @@ import homePage from '../pages/home-page';
 import productDetailsPage from '../pages/product-details-page';
 import productsPage from '../pages/products-page';
 
-describe('Verify All Products and product detail page', () => {
+describe('All Products and product detail pages tests', () => {
   it(`Given: the user is on the home page
       When: the user navigates to the Products page 
       And: visits the first product
