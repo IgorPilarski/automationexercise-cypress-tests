@@ -62,6 +62,20 @@ class CartPage {
   goToCheckout(): void {
     cy.get('a.btn.btn-default.check_out').click();
   }
+  deleteAllProductsFromCart(): void {
+    cy.get('table.table-condensed tbody tr[id^="product"]').each(($row) => {
+      cy.wrap($row).find('i.fa.fa-times').click();
+      cy.wrap($row).should('not.exist');
+      cy.log('deleted the item');
+    });
+  }
+  verifyCartIsEmpty(): void {
+    cy.get('span p.text-center')
+      .should('contain', 'Cart is empty!')
+      .and('contain', 'Click')
+      .and('contain', 'to buy products.');
+    cy.get('a[href="/products"]').should('contain.text', 'here');
+  }
 }
 
 const cartPage = new CartPage();

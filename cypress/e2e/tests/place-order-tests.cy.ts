@@ -59,7 +59,7 @@ describe('Place Order tests', () => {
     checkoutPage.verifyOrderCompleted();
     navbar.deleteCurrentUser();
   });
-  it.only(`Given: user is on home page
+  it(`Given: user is on home page
       When: user logs in to an existing account
       And: adds products to the cart
       And: proceeds to checkout
