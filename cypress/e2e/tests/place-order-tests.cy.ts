@@ -35,7 +35,7 @@ describe('Place Order tests', () => {
     navbar.deleteCurrentUser();
   });
 
-  it.only(`Given: user is on home page
+  it(`Given: user is on home page
       When: user registers a new account
       And: adds products to the cart
       And: proceeds to checkout
@@ -52,6 +52,29 @@ describe('Place Order tests', () => {
     cartTable.saveCartItems();
     cartPage.goToCheckout();
     checkoutPage.verifyUserDetailsInCheckout('randomEmailUser');
+    cartTable.compareCheckoutWithSavedCartItems();
+    checkoutPage.completeCheckout();
+    checkoutPage.enterPaymentDetails();
+    checkoutPage.confirmPaymentDetails();
+    checkoutPage.verifyOrderCompleted();
+    navbar.deleteCurrentUser();
+  });
+  it.only(`Given: user is on home page
+      When: user logs in to an existing account
+      And: adds products to the cart
+      And: proceeds to checkout
+      Then: user should be able to place the order successfully
+      And: see a success message and delete the account afterwards`, () => {
+    cy.visit('');
+    homePage.verifyHomePageLoaded();
+    navbar.goTo('loginPage');
+    loginPage.login(users.simpleLoginUser.email, users.simpleLoginUser.password);
+    productsList.addFirstProductsToCart(3);
+    navbar.goTo('cartPage');
+    cartPage.visitAndVerifyCartWithItemsLoaded();
+    cartTable.saveCartItems();
+    cartPage.goToCheckout();
+    // checkoutPage.verifyUserDetailsInCheckout('randomEmailUser');
     cartTable.compareCheckoutWithSavedCartItems();
     checkoutPage.completeCheckout();
     checkoutPage.enterPaymentDetails();
