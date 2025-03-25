@@ -6,8 +6,6 @@ declare namespace Cypress {
   }
 }
 
-
-
 /*old commands, to delete:
     // goTo(page: string): Chainable<void>;
     // logout(): Chainable<void>;

@@ -4,25 +4,6 @@ Cypress.Commands.add('hoverOver', (selector: string) => {
   cy.get(selector).trigger('mouseover');
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* 
 OLD:
 

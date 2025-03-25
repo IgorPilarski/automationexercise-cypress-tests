@@ -1,8 +1,8 @@
 {
-    "comment":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, sapien at tempor fringilla, nunc mauris consequat magna, non elementum lacus justo vitae nibh. Integer non augue vel orci dapibus tincidunt.",
-    "cardName":"test-user",
-    "cardNumber":"4242 4242 4242 4242",
-    "cvc":"123",
-    "expirationMonth":"12",
-    "expirationYear": "35"
+  "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat, sapien at tempor fringilla, nunc mauris consequat magna, non elementum lacus justo vitae nibh. Integer non augue vel orci dapibus tincidunt.",
+  "cardName": "test-user",
+  "cardNumber": "4242 4242 4242 4242",
+  "cvc": "123",
+  "expirationMonth": "12",
+  "expirationYear": "35"
 }
