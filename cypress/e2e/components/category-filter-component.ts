@@ -1,10 +1,10 @@
-type ParentCategory = 'Women' | 'Men' | 'Kids';
+type allParentCategoryNames = 'Women' | 'Men' | 'Kids';
 
-type CategoryName = 'Dress' | 'Tops' | 'Saree' | 'Tshirts' | 'Jeans' | 'Tops & Shirts';
+type allSubCategorNames = 'Dress' | 'Tops' | 'Saree' | 'Tshirts' | 'Jeans' | 'Tops & Shirts';
 
 class Categories {
   verifyCategoriesComponentIsDisplayed(): void {
-    cy.get('div.left-sidebar h2').should('contain.text', 'Category');
+    cy.get('div.left-sidebar h2').eq(0).should('contain.text', 'Category');
 
     const women = ['Dress', 'Tops', 'Saree'];
     const men = ['Tshirts', 'Jeans'];
@@ -26,7 +26,10 @@ class Categories {
     });
   }
 
-  enterTheCategory(parentCategory: ParentCategory, subCategoryName: CategoryName): void {
+  enterTheCategory(
+    parentCategory: allParentCategoryNames,
+    subCategoryName: allSubCategorNames
+  ): void {
     cy.contains('.panel-title a', parentCategory).click();
     cy.get(`#${parentCategory} .panel-body a`).each(($el) => {
       const text = $el.text().trim();
@@ -36,7 +39,7 @@ class Categories {
 
         cy.wrap($el).click();
 
-        cy.wrap(parentCategory + ' - ' + subCategoryName).as('categoryName');
+        cy.wrap(parentCategory + ' - ' + subCategoryName).as('filterName');
 
         return false;
       }

@@ -1,4 +1,6 @@
-import categories from '../components/categories-component';
+import brands from '../components/brand-filter-component';
+import categories from '../components/category-filter-component';
+import navbar from '../components/navbar-component';
 import filteredProductsPage from '../pages/filtered-products-page';
 import homePage from '../pages/home-page';
 
@@ -13,6 +15,19 @@ describe('Filters tests', () => {
     categories.enterTheCategory('Women', 'Tops');
     filteredProductsPage.verifyFilteredProductsPageLoaded();
     categories.enterTheCategory('Men', 'Jeans');
+    filteredProductsPage.verifyFilteredProductsPageLoaded();
+  });
+  it.only(`Given: user is on home page
+    When: user navigates to Products page
+    And: selects a brand from the sidebar
+    Then: user should see brand-specific products
+    And: can switch to another brand and see its products as well`, () => {
+    cy.visit('');
+    navbar.goTo('productsPage');
+    brands.verifyBrandsComponentIsDisplayed();
+    brands.enterTheBrand('Polo');
+    filteredProductsPage.verifyFilteredProductsPageLoaded();
+    brands.enterTheBrand('Kookie Kids');
     filteredProductsPage.verifyFilteredProductsPageLoaded();
   });
 });
