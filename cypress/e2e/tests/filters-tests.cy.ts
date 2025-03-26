@@ -1,8 +1,10 @@
 import brands from '../components/brand-filter-component';
 import categories from '../components/category-filter-component';
 import navbar from '../components/navbar-component';
+import productsList from '../components/product-list-component';
 import filteredProductsPage from '../pages/filtered-products-page';
 import homePage from '../pages/home-page';
+import productsPage from '../pages/products-page';
 
 describe('Filters tests', () => {
   it(`Given: user is on home page
@@ -29,5 +31,6 @@ describe('Filters tests', () => {
     filteredProductsPage.verifyFilteredProductsPageLoaded();
     brands.enterTheBrand('Kookie Kids');
     filteredProductsPage.verifyFilteredProductsPageLoaded();
+    productsList.verifyAnyProductIsVisible();
   });
 });

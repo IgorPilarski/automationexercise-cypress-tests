@@ -20,6 +20,9 @@ class ProductsList {
       .eq(number * 2 - 2)
       .click();
   }
+  verifyAnyProductIsVisible(): void {
+    cy.get('div.product-overlay').should('be.visible');
+  }
 }
 
 const productsList = new ProductsList();
