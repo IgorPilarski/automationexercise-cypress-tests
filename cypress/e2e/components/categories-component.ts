@@ -4,46 +4,40 @@ type CategoryName = 'Dress' | 'Tops' | 'Saree' | 'Tshirts' | 'Jeans' | 'Tops & S
 
 class Categories {
   verifyCategoriesComponentIsDisplayed(): void {
-    cy.get('div.left-sidebar h2').eq(0).should('contain', 'Category');
-    cy.get('div.panel-group.category-products div.panel.panel-default');
+    cy.get('div.left-sidebar h2').should('contain.text', 'Category');
 
-    //fixes to be made!!!: wrong page numbers in hrefs
-    const womenSubcategories = [
-      { name: 'Dress', href: '/category_products/1' },
-      { name: 'Tops', href: '/category_products/2' },
-      { name: 'Saree', href: '/category_products/7' },
-    ];
-    womenSubcategories.forEach((sub) => {
-      cy.get(`#Women a[href="${sub.href}"]`).should('be.visible').and('contain.text', sub.name);
-    });
+    const women = ['Dress', 'Tops', 'Saree'];
+    const men = ['Tshirts', 'Jeans'];
+    const kids = ['Dress', 'Tops & Shirts'];
+    this.checkCategory('Women', women);
+    this.checkCategory('Men', men);
+    this.checkCategory('Kids', kids);
+    cy.reload();
+  }
 
-    cy.contains('.panel-title a', 'Men').should('be.visible').click();
-    const menSubcategories = [
-      { name: 'Tshirts', href: '/category_products/3' },
-      { name: 'Jeans', href: '/category_products/6' },
-    ];
-    menSubcategories.forEach((sub) => {
-      cy.get(`#Men a[href="${sub.href}"]`).should('be.visible').and('contain.text', sub.name);
-    });
-
-    cy.contains('.panel-title a', 'Kids').should('be.visible').click();
-    const kidsSubcategories = [
-      { name: 'Dress', href: '/category_products/4' },
-      { name: 'Tops & Shirts', href: '/category_products/5' },
-    ];
-    kidsSubcategories.forEach((sub) => {
-      cy.get(`#Kids a[href="${sub.href}"]`).should('be.visible').and('contain.text', sub.name);
+  private checkCategory(categoryName: string, subcategories: string[]): void {
+    cy.contains('.panel-title a ', categoryName).click();
+    subcategories.forEach((sub) => {
+      cy.get(`#${categoryName} .panel-body a`)
+        .contains(sub)
+        .should('be.visible')
+        .and('have.attr', 'href')
+        .and('include', '/category_products');
     });
   }
 
-  //fixes to be made!!!: parent needs to be clicked first
-  enterTheCategory(parentCategory: ParentCategory, categoryName: CategoryName): void {
-    cy.contains('.panel-title a', parentCategory);
-
+  enterTheCategory(parentCategory: ParentCategory, subCategoryName: CategoryName): void {
+    cy.contains('.panel-title a', parentCategory).click();
     cy.get(`#${parentCategory} .panel-body a`).each(($el) => {
       const text = $el.text().trim();
-      if (text === categoryName.trim()) {
+      if (text === subCategoryName.trim()) {
+        const href = $el.attr('href');
+        cy.wrap(href).as('filterUrl');
+
         cy.wrap($el).click();
+
+        cy.wrap(parentCategory + ' - ' + subCategoryName).as('categoryName');
+
         return false;
       }
     });
