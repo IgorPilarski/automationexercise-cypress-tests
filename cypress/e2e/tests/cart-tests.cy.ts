@@ -16,4 +16,18 @@ describe('Cart page tests', () => {
     cartPage.deleteAllProductsFromCart();
     cartPage.verifyCartIsEmpty();
   });
+  it(`Given: user is on home page
+    When: user adds product to the cart
+    And: navigates to the cart page
+    And: removes a product from the cart
+    Then: the product should be removed 
+    And: no longer visible in the cart`, () => {
+    cy.visit('');
+    homePage.verifyHomePageLoaded();
+    productsList.addProductToCartByName('Fancy Green Top');
+    productsList.goToCartAfterAddingProduct();
+    cartPage.visitAndVerifyCartWithItemsLoaded();
+    cartPage.deleteProductByNameFromCart('Fancy Green Top');
+    cartPage.verifyLastProductHasBeenDeleted();
+  });
 });
