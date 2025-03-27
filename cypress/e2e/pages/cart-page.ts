@@ -69,12 +69,21 @@ class CartPage {
       cy.log('deleted the item');
     });
   }
+  deleteProductByNameFromCart(productName: string): void {
+    cy.wrap(productName).as('deletedProduct');
+    cy.contains('a', productName).parents('tr').find('a.cart_quantity_delete').click();
+  }
   verifyCartIsEmpty(): void {
     cy.get('span p.text-center')
       .should('contain', 'Cart is empty!')
       .and('contain', 'Click')
       .and('contain', 'to buy products.');
     cy.get('a[href="/products"]').should('contain.text', 'here');
+  }
+  verifyLastProductHasBeenDeleted(): void {
+    cy.get<string>('@deletedProduct').then((productName) => {
+      cy.contains('a', productName).should('not.exist');
+    });
   }
 }
 

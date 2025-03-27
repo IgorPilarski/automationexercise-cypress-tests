@@ -10,6 +10,10 @@ class ProductsList {
     }
   }
 
+  addProductToCartByName(productName: string): void {
+    cy.contains('p', productName).parents('.single-products').find('a.add-to-cart').eq(0).click();
+  }
+
   goToCartAfterAddingProduct(): void {
     cy.get('p.text-center').contains('View Cart').click();
   }
