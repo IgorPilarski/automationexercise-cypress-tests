@@ -18,6 +18,14 @@ class ProductDetailsPage {
   addCurrentProductToCart(): void {
     cy.get('button.btn.btn-default.cart').click();
   }
+  completeProductReviewForm(name: string, email: string, review: string): void {
+    cy.get('div.category-tab.shop-details-tab a').should('contain', 'Write Your Review');
+    cy.get('div#reviews input#name').type(name);
+    cy.get('div#reviews input#email').type(email);
+
+    cy.get('div#reviews input#review').type(review);
+    cy.get('button#button-review').click();
+  }
 }
 
 const productDetailsPage = new ProductDetailsPage();

@@ -33,7 +33,7 @@ describe('Cart page tests', () => {
     cartPage.verifyLastProductHasBeenDeleted();
   });
 
-  it.only(`Given: user is on home page
+  it(`Given: user is on home page
       When: user searches for a product
       And: adds search results to the cart
       And: navigates to the cart page

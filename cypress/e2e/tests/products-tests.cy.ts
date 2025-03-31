@@ -4,7 +4,7 @@ import cartPage from '../pages/cart-page';
 import homePage from '../pages/home-page';
 import productDetailsPage from '../pages/product-details-page';
 import productsPage from '../pages/products-page';
-
+import review from '../../fixtures/productReviewData.json';
 describe('All Products and product detail pages tests', () => {
   it(`Given: the user is on the home page
       When: the user navigates to the Products page 
@@ -25,7 +25,7 @@ describe('All Products and product detail pages tests', () => {
     homePage.verifyHomePageLoaded();
     navbar.goTo('productsPage');
     productsPage.visitAndVerifyAllProductsPageLoaded();
-    productsPage.searchAndVerifyResult('Women', 2);
+    productsPage.searchAndVerifyResult('Women');
   });
 
   it(`Given: user is on home page
@@ -56,5 +56,19 @@ describe('All Products and product detail pages tests', () => {
     productDetailsPage.addCurrentProductToCart();
     productsList.goToCartAfterAddingProduct();
     cartPage.verifyProductQuantityInCart();
+  });
+
+  it.only(`Given: user is on home page
+    When: user navigates to Products page
+    And: views a product and submits a review
+    Then: success message confirming the review should be visible`, () => {
+    cy.visit('');
+    navbar.goTo('productsPage');
+    productDetailsPage.visitAndVerifyProductDetailsPageLoaded(5);
+    productDetailsPage.completeProductReviewForm(
+      review.name,
+      review.email,
+      review.reviewDescription
+    );
   });
 });
