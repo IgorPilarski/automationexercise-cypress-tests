@@ -23,8 +23,11 @@ class ProductDetailsPage {
     cy.get('div#reviews input#name').type(name);
     cy.get('div#reviews input#email').type(email);
 
-    cy.get('div#reviews input#review').type(review);
+    cy.get('div#reviews textarea#review').type(review);
     cy.get('button#button-review').click();
+    cy.get('#review-section')
+      .should('be.visible')
+      .and('contain.text', 'Thank you for your review.');
   }
 }
 
