@@ -9,9 +9,9 @@ import productsPage from '../pages/products-page';
 
 describe('Filters tests', () => {
   it(`Given: user is on home page
-    When: user views a subcategory under 'Women' category
-    And: then views a subcategory under 'Men' category
-    Then: corresponding category pages should be displayed`, () => {
+      When: user views a subcategory under 'Women' category
+      And: then views a subcategory under 'Men' category
+      Then: corresponding category pages should be displayed`, () => {
     cy.visit('');
     homePage.verifyHomePageLoaded();
     categories.verifyCategoriesComponentIsDisplayed();
@@ -21,10 +21,10 @@ describe('Filters tests', () => {
     filteredProductsPage.verifyFilteredProductsPageLoaded();
   });
   it(`Given: user is on home page
-    When: user navigates to Products page
-    And: selects a brand from the sidebar
-    Then: user should see brand-specific products
-    And: can switch to another brand and see its products as well`, () => {
+      When: user navigates to Products page
+      And: selects a brand from the sidebar
+      Then: user should see brand-specific products
+      And: can switch to another brand and see its products as well`, () => {
     cy.visit('');
     navbar.goTo('productsPage');
     brandsComponent.verifyBrandsComponentIsDisplayed();

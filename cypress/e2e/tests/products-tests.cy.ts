@@ -58,10 +58,10 @@ describe('All Products and product detail pages tests', () => {
     cartPage.verifyProductQuantityInCart();
   });
 
-  it.only(`Given: user is on home page
-    When: user navigates to Products page
-    And: views a product and submits a review
-    Then: success message confirming the review should be visible`, () => {
+  it(`Given: user is on home page
+      When: user navigates to Products page
+      And: views a product and submits a review
+      Then: success message confirming the review should be visible`, () => {
     cy.visit('');
     navbar.goTo('productsPage');
     productDetailsPage.visitAndVerifyProductDetailsPageLoaded(5);
