@@ -9,11 +9,28 @@ class ProductsPage {
     cy.get('div.features_items').should('be.visible');
   }
   // Searches for products by name and verifies that the number of results matches the expected amount:
-  searchAndVerifyProduct(productName: string, amountOfProducts: number): void {
+  searchAndVerifyResult(productName: string): void {
     cy.get('input#search_product').type(productName);
     cy.get('i.fa.fa-search').click();
     cy.get('h2.title.text-center').should('contain', 'Searched Products');
-    cy.get('.product-overlay').should('have.length', amountOfProducts);
+    cy.get('div.productinfo.text-center p').each(($el) => {
+      cy.wrap($el).should('contain.text', productName);
+    });
+    cy.wrap(productName).as('searchedProduct');
+  }
+  addSearchedProductsToCart(): void {
+    const itemsAddedToCart: any[] = [];
+
+    cy.get<string>('@searchedProduct').then((searchedProduct) => {
+      cy.get('div.productinfo.text-center p').each(($el) => {
+        if ($el.text().includes(searchedProduct)) {
+          cy.wrap($el).parents('.single-products').find('a.add-to-cart').eq(0).click();
+          cy.get('button.btn.btn-success.close-modal.btn-block').click();
+          itemsAddedToCart.push($el.text());
+        }
+      });
+      cy.wrap(itemsAddedToCart).as('itemsAddedToCart');
+    });
   }
 }
 

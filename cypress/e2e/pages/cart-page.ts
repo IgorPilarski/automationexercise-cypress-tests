@@ -85,6 +85,23 @@ class CartPage {
       cy.contains('a', productName).should('not.exist');
     });
   }
+  verifyProductNames(): void {
+    const cartItems: any[] = [];
+    cy.get('table.table-condensed tbody tr[id^="product"]')
+      .each(($row) => {
+        cy.wrap($row)
+          .find('.cart_description h4 a')
+          .invoke('text')
+          .then((productName) => {
+            cartItems.push(productName.trim());
+          });
+      })
+      .then(() => {
+        cy.get('@itemsAddedToCart').then((itemsAddedToCart) => {
+          expect(cartItems).to.deep.equal(itemsAddedToCart);
+        });
+      });
+  }
 }
 
 const cartPage = new CartPage();

@@ -25,7 +25,7 @@ describe('All Products and product detail pages tests', () => {
     homePage.verifyHomePageLoaded();
     navbar.goTo('productsPage');
     productsPage.visitAndVerifyAllProductsPageLoaded();
-    productsPage.searchAndVerifyProduct('Women', 2);
+    productsPage.searchAndVerifyResult('Women', 2);
   });
 
   it(`Given: user is on home page
