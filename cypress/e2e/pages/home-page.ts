@@ -11,6 +11,38 @@ class HomePage {
     cy.get('.recommended_items').scrollIntoView().should('be.visible');
     cy.get('div.recommended_items h2.title.text-center').should('contain', 'recommended items');
   }
+  addRecommendedItemToCart(productName: string): void {
+    const addedItem: string[] = [];
+
+    function findAndClick(): void {
+      cy.get('.recommended_items')
+        .scrollIntoView()
+        .find('.item.active')
+        .then(($activeItem) => {
+          const productExists = $activeItem
+            .find('.productinfo p')
+            .toArray()
+            .some((el) => {
+              return el.textContent?.trim() === productName;
+            });
+
+          if (productExists) {
+            cy.wrap($activeItem)
+              .contains('.productinfo p', productName)
+              .parents('.productinfo')
+              .find('a.add-to-cart')
+              .click({ force: true });
+            addedItem.push(productName);
+          } else {
+            cy.get('a.right.recommended-item-control').click();
+            cy.wait(500);
+            findAndClick();
+          }
+        });
+    }
+    findAndClick();
+    cy.wrap(addedItem).as('itemsAddedToCart');
+  }
 }
 
 const homePage = new HomePage();

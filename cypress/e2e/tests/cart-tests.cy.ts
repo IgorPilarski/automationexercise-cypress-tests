@@ -59,5 +59,8 @@ describe('Cart page tests', () => {
       Then: the recommended product should be visible in the cart`, () => {
     cy.visit('');
     homePage.scrollToAndVerifyRecommendedSection();
+    homePage.addRecommendedItemToCart('Men Tshirt');
+    productsList.goToCartAfterAddingProduct();
+    cartPage.verifyProductNames();
   });
 });
