@@ -53,6 +53,50 @@ class CheckoutPage {
     cy.get('div p').contains('Congratulations! Your order has been confirmed!').should('exist');
     cy.get('a[data-qa="continue-button"]').click();
   }
+  verifyDeliveryAddress(): void {
+    cy.get('@userAddressDetails').then((userAddressDetails) => {
+      cy.get('h2.heading').contains('Address Details').should('exist');
+      cy.get('h3.page-subheading').contains('Your delivery address').should('exist');
+      cy.get('li.address_firstname.address_lastname')
+        .eq(0)
+        .should('contain', userAddressDetails[0]);
+      cy.get('li.address_firstname.address_lastname')
+        .eq(0)
+        .should('contain', userAddressDetails[1]);
+      cy.get('li.address_address1.address_address2').eq(0).should('contain', userAddressDetails[2]);
+      cy.get('li.address_address1.address_address2').eq(1).should('contain', userAddressDetails[3]);
+      cy.get('li.address_address1.address_address2').eq(2).should('contain', userAddressDetails[4]);
+      cy.get('li.address_city.address_state_name.address_postcode')
+        .eq(0)
+        .should('contain', userAddressDetails[7])
+        .should('contain', userAddressDetails[6])
+        .should('contain', userAddressDetails[8]);
+      cy.get('li.address_country_name').eq(0).should('contain', userAddressDetails[5]);
+      cy.get('li.address_phone').eq(0).should('contain', userAddressDetails[9]);
+    });
+  }
+  verifyBillingAddress(): void {
+    cy.get('@userAddressDetails').then((userAddressDetails) => {
+      cy.get('h2.heading').contains('Address Details').should('exist');
+      cy.get('h3.page-subheading').contains('Your billing address').should('exist');
+      cy.get('li.address_firstname.address_lastname')
+        .eq(1)
+        .should('contain', userAddressDetails[0]);
+      cy.get('li.address_firstname.address_lastname')
+        .eq(1)
+        .should('contain', userAddressDetails[1]);
+      cy.get('li.address_address1.address_address2').eq(3).should('contain', userAddressDetails[2]);
+      cy.get('li.address_address1.address_address2').eq(4).should('contain', userAddressDetails[3]);
+      cy.get('li.address_address1.address_address2').eq(5).should('contain', userAddressDetails[4]);
+      cy.get('li.address_city.address_state_name.address_postcode')
+        .eq(1)
+        .should('contain', userAddressDetails[7])
+        .should('contain', userAddressDetails[6])
+        .should('contain', userAddressDetails[8]);
+      cy.get('li.address_country_name').eq(1).should('contain', userAddressDetails[5]);
+      cy.get('li.address_phone').eq(1).should('contain', userAddressDetails[9]);
+    });
+  }
 }
 
 const checkoutPage = new CheckoutPage();

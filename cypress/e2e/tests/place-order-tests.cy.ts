@@ -85,4 +85,22 @@ describe('Place Order tests', () => {
     checkoutPage.confirmPaymentDetails();
     checkoutPage.verifyOrderCompleted();
   });
+  it(`Given: user is on home page
+    When: user registers a new account
+    And: adds products to the cart
+    And: proceeds to checkout
+    Then: delivery and billing addresses should match the address provided during registration
+    And: user should be able to delete the account afterwards`, () => {
+    cy.visit('');
+    homePage.verifyHomePageLoaded();
+    navbar.goTo('loginPage');
+    loginPage.registerRandomUser();
+    productsList.addFirstProductsToCart(3);
+    navbar.goTo('cartPage');
+    cartPage.visitAndVerifyCartWithItemsLoaded();
+    cartPage.goToCheckout();
+    checkoutPage.verifyDeliveryAddress();
+    checkoutPage.verifyBillingAddress();
+    navbar.deleteCurrentUser();
+  });
 });

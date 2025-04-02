@@ -25,6 +25,8 @@ class LoginPage {
     cy.get('p[style="color: red;"]').should('contain', 'Email Address already exist!');
   }
   registerRandomUser(): void {
+    const userAddressDetails: any[] = [];
+
     const email = generateTestEmail();
     cy.get('h2').contains('New User Signup!').should('be.visible');
     cy.get('input[data-qa="signup-name"').type(users.randomEmailUser.firstName);
@@ -39,19 +41,30 @@ class LoginPage {
     cy.get('input[name="newsletter"]').click();
     cy.get('input[name="optin"]').click();
     cy.get('input[data-qa="first_name"]').type(users.randomEmailUser.firstName);
+    userAddressDetails.push(users.randomEmailUser.firstName);
     cy.get('input[data-qa="last_name"]').type(users.randomEmailUser.lastName);
+    userAddressDetails.push(users.randomEmailUser.lastName);
     cy.get('input[data-qa="company"]').type(users.randomEmailUser.company);
+    userAddressDetails.push(users.randomEmailUser.company);
     cy.get('input[data-qa="address"]').type(users.randomEmailUser.address);
+    userAddressDetails.push(users.randomEmailUser.address);
     cy.get('input[data-qa="address2"]').type(users.randomEmailUser.address2);
+    userAddressDetails.push(users.randomEmailUser.address2);
     cy.get('select[data-qa="country"]').select(users.randomEmailUser.country);
+    userAddressDetails.push(users.randomEmailUser.country);
     cy.get('input[data-qa="state"]').type(users.randomEmailUser.state);
+    userAddressDetails.push(users.randomEmailUser.state);
     cy.get('input[data-qa="city"]').type(users.randomEmailUser.city);
+    userAddressDetails.push(users.randomEmailUser.city);
     cy.get('input[data-qa="zipcode"]').type(users.randomEmailUser.zipCode);
+    userAddressDetails.push(users.randomEmailUser.zipCode);
     cy.get('input[data-qa="mobile_number"]').type(users.randomEmailUser.mobileNumber);
+    userAddressDetails.push(users.randomEmailUser.mobileNumber);
     cy.get('button[data-qa="create-account"').click();
     cy.get('h2').contains('Account Created!').should('be.visible');
     cy.get('a[data-qa="continue-button"]').click();
     cy.contains('li', 'Logged in as').should('contain', 'test-user');
+    cy.wrap(userAddressDetails).as('userAddressDetails');
   }
 }
 

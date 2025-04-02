@@ -52,7 +52,7 @@ describe('Cart page tests', () => {
     cartPage.verifyProductNames();
     cartPage.deleteAllProductsFromCart();
   });
-  it.only(`Given: user is on home page
+  it(`Given: user is on home page
       When: user scrolls to Recommended Items section
       And: adds a recommended product to the cart
       And: navigates to the cart page
