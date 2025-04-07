@@ -97,6 +97,9 @@ class CheckoutPage {
       cy.get('li.address_phone').eq(1).should('contain', userAddressDetails[9]);
     });
   }
+  downloadInvoice(): void {
+    cy.get('a.btn.btn-default.check_out').click();
+  }
 }
 
 const checkoutPage = new CheckoutPage();

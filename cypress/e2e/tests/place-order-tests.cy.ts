@@ -103,4 +103,28 @@ describe('Place Order tests', () => {
     checkoutPage.verifyBillingAddress();
     navbar.deleteCurrentUser();
   });
+  it.only(`Given: user is on home page
+    When: user adds products to the cart
+    And: registers a new account during checkout
+    And: places an order successfully
+    Then: user should be able to download the invoice
+    And: user should be able to delete the account afterwards`, () => {
+    cy.visit('');
+    homePage.verifyHomePageLoaded();
+    productsList.addFirstProductsToCart(4);
+    navbar.goTo('cartPage');
+    cartPage.visitAndVerifyCartWithItemsLoaded();
+    cartPage.goToCheckout();
+    checkoutPage.goToLoginFromCheckout();
+    loginPage.registerRandomUser();
+    navbar.goTo('cartPage');
+    cartPage.goToCheckout();
+    checkoutPage.verifyUserDetailsInCheckout;
+    checkoutPage.completeCheckout();
+    checkoutPage.enterPaymentDetails();
+    checkoutPage.confirmPaymentDetails();
+    checkoutPage.downloadInvoice();
+    checkoutPage.verifyOrderCompleted();
+    navbar.deleteCurrentUser();
+  });
 });
