@@ -48,6 +48,9 @@ class HomePage {
       .contains('Full-Fledged practice website for Automation Engineers')
       .should('exist');
   }
+  scrollToTheTop(): void {
+    cy.scrollTo('top');
+  }
 }
 
 const homePage = new HomePage();
