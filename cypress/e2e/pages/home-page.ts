@@ -43,6 +43,11 @@ class HomePage {
     findAndClick();
     cy.wrap(addedItem).as('itemsAddedToCart');
   }
+  verifyCarouselText(): void {
+    cy.get('div.item.active h2')
+      .contains('Full-Fledged practice website for Automation Engineers')
+      .should('exist');
+  }
 }
 
 const homePage = new HomePage();

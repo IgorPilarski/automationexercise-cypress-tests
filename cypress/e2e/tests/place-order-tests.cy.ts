@@ -103,7 +103,7 @@ describe('Place Order tests', () => {
     checkoutPage.verifyBillingAddress();
     navbar.deleteCurrentUser();
   });
-  it.only(`Given: user is on home page
+  it(`Given: user is on home page
     When: user adds products to the cart
     And: registers a new account during checkout
     And: places an order successfully

@@ -9,6 +9,8 @@ describe('Verify Subscription in home page', () => {
       Then: the success message 'You have been successfully subscribed!' should be visible`, () => {
     cy.visit('');
     homePage.verifyHomePageLoaded();
+    footer.scrollToBottom();
+    footer.verifySubscriptionSection();
     footer.subscribeAndVerify();
   });
   it(`Given: user is on Cart page
@@ -18,6 +20,8 @@ describe('Verify Subscription in home page', () => {
     cy.visit('');
     homePage.verifyHomePageLoaded();
     navbar.goTo('cartPage');
+    footer.scrollToBottom();
+    footer.verifySubscriptionSection();
     footer.subscribeAndVerify();
   });
 });
