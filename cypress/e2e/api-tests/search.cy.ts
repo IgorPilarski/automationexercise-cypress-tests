@@ -31,6 +31,15 @@ describe('Search API', () => {
     cy.request({
       method: 'POST',
       url: 'https://automationexercise.com/api/searchProduct',
-    }).then((response) => {});
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      expect(response.body).to.not.be.empty;
+
+      const body = JSON.parse(response.body);
+      expect(body.responseCode).to.eq(400);
+      expect(body.message).to.eq(
+        'Bad request, search_product parameter is missing in POST request.'
+      );
+    });
   });
 });
