@@ -23,7 +23,25 @@ describe('Login API', () => {
   it(`Given: API is available
       When: user sends a POST request to verify login endpoint without email parameter
       Then: response code should be 400  
-      And: an error message should be returned`, () => {});
+      And: an error message should be returned`, () => {
+    cy.request({
+      method: 'POST',
+      url: 'https://automationexercise.com/api/verifyLogin',
+      form: true,
+      body: {
+        password: users.simpleLoginUser.password,
+      },
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      expect(response.body).to.not.be.empty;
+
+      const body = JSON.parse(response.body);
+      expect(body.responseCode).to.eq(400);
+      expect(body.message).to.eq(
+        'Bad request, email or password parameter is missing in POST request.'
+      );
+    });
+  });
   it(`Given: API is available
       When: user sends a DELETE request to verify login endpoint
       Then: response code should be 405  
