@@ -2,6 +2,8 @@ import users from '../../fixtures/usersData.json';
 import { generateTestEmail } from '../../support/utils';
 
 const email = generateTestEmail();
+const secondEmail = generateTestEmail();
+
 describe('Account API', () => {
   it(`Given: API is available
         When: user sends a POST request to create account endpoint with valid user details
@@ -60,10 +62,41 @@ describe('Account API', () => {
       expect(body.message).to.eq('Account deleted!');
     });
   });
-  it(`Given: API is available
+  /*  it(`Given: API is available
         When: user sends a PUT request to update account endpoint with updated user details
         Then: response code should be 200 
-        AND: success message should be returned`, () => {});
+        AND: success message should be returned`, () => {
+    cy.request({
+      method: 'PUT',
+      url: 'https://automationexercise.com/api/updateAccount',
+      form: true,
+      body: {
+        name: 'testuser',
+        email: 'editDetailsUser@gmail.com',
+        password: 'Test1234',
+        title: 'Mr',
+        birth_date: '01',
+        birth_month: '01',
+        birth_year: '1990',
+        firstname: 'Test',
+        lastname: 'User',
+        company: 'TestCompany',
+        address1: 'Main Street 1',
+        address2: 'Apartment 2',
+        country: 'Canada',
+        zipcode: '12345',
+        state: 'Ontario',
+        city: 'Toronto',
+        mobile_number: '1234567890',
+      },
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+
+      const body = JSON.parse(response.body);
+      expect(body.message).to.eq('User updated!');
+    });
+  });
+  */
   it(`Given: API is available
         When: user sends a GET request to get user detail by email endpoint with a valid email
         Then: response code should be 200 

@@ -35,5 +35,22 @@
     "city": "Warszawa",
     "zipCode": "00-902",
     "mobileNumber": "+48512321123"
+  },
+  "editDetailsUser": {
+    "email": "editDetailsUser@gmail.com",
+    "firstName": "Simple-user",
+    "lastName": "O'Hello",
+    "password": "irHeyt#emrQ7kW*33M!foJMt",
+    "day": "11",
+    "month": "November",
+    "year": "1901",
+    "company": "The smallest company in the galaxy",
+    "address": "1 All. du Printemps, Strasbourg",
+    "address2": "1/2/qwert",
+    "country": "Australia",
+    "state": "Alsace",
+    "city": "Strasbourg",
+    "zipCode": "67000",
+    "mobileNumber": "+3339974011"
   }
 }
