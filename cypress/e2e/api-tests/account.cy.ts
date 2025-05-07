@@ -100,5 +100,20 @@ describe('Account API', () => {
   it(`Given: API is available
         When: user sends a GET request to get user detail by email endpoint with a valid email
         Then: response code should be 200 
-        AND: user details should be returned`, () => {});
+        AND: user details should be returned`, () => {
+    cy.request({
+      method: 'GET',
+      url: 'https://automationexercise.com/api/getUserDetailByEmail',
+      form: true,
+      qs: {
+        email: users.simpleLoginUser.email,
+      },
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      expect(response.body).to.not.be.empty;
+
+      const body = JSON.parse(response.body);
+      expect(body.responseCode).to.eq(200);
+    });
+  });
 });
